@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Leana Bissig
+title: Leana Bissig | Triathlete
 email:
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -60,33 +60,40 @@ plugins:
 author:
   name   : "Leana Bissig"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  bio    : "Insight into my life as a professional triathlete and science enthusiast."
   links:
-    - label: "Website"
+    - label: "World Triathlon"
       icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://triathlon.org/athletes/profile/106416/leana_bissig"
+    - label: "TG Hütten"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.tghuetten.ch/"
+    - label: "Linkedin"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.linkedin.com/in/leana-bissig/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://www.instagram.com/leanabissig/"
+
+      
+
+      
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+    - label: "World Triathlon"
+      icon: "fas fa-fw fa-link"
+      url: "https://triathlon.org/athletes/profile/106416/leana_bissig"
+    - label: "TG Hütten"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.tghuetten.ch/"
+    - label: "Linkedin"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.linkedin.com/in/leana-bissig/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
-
+      url: "https://www.instagram.com/leanabissig/"
+  
 defaults:
   # _posts
   - scope:
@@ -95,8 +102,8 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
-      comments: true
+      read_time: false
+      comments: false
       share: true
       related: true
   # _pages
