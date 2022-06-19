@@ -33,6 +33,7 @@ In addition, back in Switzerland, I joined the local running team and qualified 
 I've continued to build since 2021 to become a better and more complete athlete, both physically and mentally, as well as in terms of experience. I am currently competing in European Cups and Bundesliga races, and I enjoy mixing in some Olympic Distance non-drafting and 70.3 races.
 
 Besides sports...
+hello
 
 **Some Facts**
 <style>

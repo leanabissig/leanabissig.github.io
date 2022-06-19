@@ -8,3 +8,5 @@ tags:
 ---
 
 I've loved sports.
+
+![My image Name](/assets/images/partners/mail-logo-tsv-viernheim.png)
