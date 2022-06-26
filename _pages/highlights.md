@@ -30,7 +30,7 @@ ul {
     margin-left: 5px;
 }
 </style>
-Multiple Swiss championship titles in U20 & U23 category in triathlon and duathlon. 3ed U20 duathlon world championship. 
+Multiple Swiss Championship titles in U20 & U23 category in Triathlon and Duathlon. 3ed U20 Duathlon World Championship. 
 
 Recent highlight 15th at EC Caorle in a strong & big field.
 
@@ -42,7 +42,7 @@ td, th {
 
 
 |   **2022**                 |                                |        |
-|   5th                      |       NL Zug                   |   Double Super Sprint     |
+|   5th                      |       NL Zug                   |   Double Supersprint     |
 |   17th                     |       BL Kraichgau                   |    Sprint    |
 |   15th                     |       EC Caorle                   |   Sprint     |
 |   3ed                      | Pro Race Wallisellen | Supersprint
@@ -53,7 +53,7 @@ td, th {
 |   11th | 70.3 Nice | Middle |
 |   19th  | EC Coimbra | Sprint |
 |   **2020**                 ||        |
-|   1st | U23 Swiss Chamionship Sursee | Supersprint |
+|   1st | U23 Swiss Championship Sursee | Supersprint |
 |   **2019**                 ||        |
 |   3ed | Natureman Var Gorges du Verdon | Middle |
 |   27th | U23 EM Valencia| Sprint |

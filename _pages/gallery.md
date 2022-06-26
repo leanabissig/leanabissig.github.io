@@ -11,17 +11,17 @@ images:
     title: "Duathlon U20 World Championships 2018"
   - url: /assets/images/gallery/DSC00577.jpg
     image_path: /assets/images/gallery/DSC00577.jpg
-    alt: "5000m Regensdorf"
-    title: "5000m Regensdorf"
+    alt: "5000m Regensdorf 2021"
+    title: "5000m Regensdorf 2021"
   - url: /assets/images/gallery/IMG_6095.jpg
     image_path: /assets/images/gallery/IMG_6095.jpg
-    alt: "BL Saarbrücken Teamsprint"
-    title: "BL Saarbrücken Teamsprint"
+    alt: "BL Saarbrücken Teamsprint 2021"
+    title: "BL Saarbrücken Teamsprint 2021"
 
   - url: /assets/images/gallery/IMG_6096.jpg
     image_path: /assets/images/gallery/IMG_6096.jpg
-    alt: "BL Saarbrücken Teamsprint"
-    title: "BL Saarbrücken Teamsprint"
+    alt: "BL Saarbrücken Teamsprint 2021"
+    title: "BL Saarbrücken Teamsprint 2021"
   - url: /assets/images/gallery/IMG_6594.jpg
     image_path: /assets/images/gallery/IMG_6594.jpg
     alt: "St. Moritz Malojapass"
@@ -44,8 +44,8 @@ images:
     title: "Swimming in Zugersee"
   - url: /assets/images/gallery/DSC08458.jpg
     image_path: /assets/images/gallery/DSC08458.jpg
-    alt: "Racing National League Zytturmtriathlon"
-    title: "Racing National League Zytturmtriathlon"
+    alt: "Racing National League Zytturmtriathlon 2022"
+    title: "Racing National League Zytturmtriathlon 2022"
   - url: /assets/images/gallery/68D4EDD3-CA96-4D81-BFD4-17B28280F941.jpg
     image_path: /assets/images/gallery/68D4EDD3-CA96-4D81-BFD4-17B28280F941.jpg
     alt: "BL Kraichgau 2022"
@@ -62,8 +62,8 @@ images:
     title: "Swimming in Zugersee"
   - url: /assets/images/gallery/DSC00602.jpg
     image_path: /assets/images/gallery/DSC00602.jpg
-    alt: "5000m Regensdorf"
-    title: "5000m Regensdorf"
+    alt: "5000m Regensdorf 2021"
+    title: "5000m Regensdorf 2021"
   - url: /assets/images/gallery/IMG_6788.jpeg
     image_path: /assets/images/gallery/IMG_6788.jpeg
     alt: "70.3 Cascais 2021"
@@ -78,13 +78,13 @@ images:
     title: "EC Quarteira 2022"
   - url: /assets/images/gallery/IMG_1945-2.jpg
     image_path: /assets/images/gallery/IMG_1945-2.jpg
-    alt: "70.3 Marbella"
-    title: "70.3 Marbella"
+    alt: "70.3 Marbella 2022"
+    title: "70.3 Marbella 2022"
 
   - url: /assets/images/gallery/e2222eba-8dc5-48dc-bc04-d22054656d90.jpg
     image_path: /assets/images/gallery/e2222eba-8dc5-48dc-bc04-d22054656d90.jpg
-    alt: "5000m Wetzikon"
-    title: "5000m Wetzikon"
+    alt: "5000m Wetzikon 2020"
+    title: "5000m Wetzikon 2020"
 
 
   - url: /assets/images/gallery/DSC00910.jpg
