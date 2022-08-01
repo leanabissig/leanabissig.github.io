@@ -36,7 +36,7 @@ feature_row:
   - image_path: /assets/images/DSC08459.jpg
     alt: "fully responsive"
     title: "Highlights & Goals"
-    excerpt: "Swiss Champion U20 & U23, Multiple Top 20 European Cups, 3ed U20 duathlon Worlds. <br /> 
+    excerpt: "Swiss Champion U20 & U23, Multiple Top 20 European Cups, 3rd U20 duathlon Worlds. <br /> 
     Working towards performing at European Championships, World Cups and 70.3 races.
     <br />
     <br />"

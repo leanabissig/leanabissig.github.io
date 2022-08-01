@@ -33,10 +33,10 @@ ul {
 
 | Date                    | Race                     | Format |
 | ----------------------- | ------------------------ | ------ |
-| 25.06.22                | Bundesliga Finals Berlin | Sprint |
-| 02.07.22                | European Cup Holten      | Sprint |
-| 17.07.22                | Bundesliga Schliersee    | Sprint |
-| 18.07.22 until 05.08.22 | Camp St. Moritz          |        |
+| 07.08.22 | Swiss Championship Nyon          |    Sprint    |
+| 28.08.22 | World Cup Bergen          |    Sprint    |
+| 03./04.09.22 | NL Yverdon or BL Hannover         | Sprint       |
+| 09./10.09.22 | FISU World Championship University Maceio          |   Sprint, Mixed Relay     |
 
 <br />  
 {% include gallery id="images" %}

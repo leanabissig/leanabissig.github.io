@@ -94,7 +94,7 @@ images:
 
 ---
 
-Some impressions of my life training, racing and travelling around the world. Follow me on instagram to find my latest updates.
+Some impressions of my life training, racing, and travelling around the world. Follow me on instagram to find my latest updates.
 
 {% include gallery id="images" class="full" layout="half" %}
 
