@@ -4,8 +4,8 @@ excerpt_separator: "<!--more-->"
 categories:
   - Blog
 tags:
-  - triathlon
-  - travel
+  - Triathlon
+  - Travel
   - Bundesliga
   - European Cup
 ---
