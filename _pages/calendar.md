@@ -30,12 +30,14 @@ ul {
 
 
 
+No upcoming races at the moment. 
+
+Past events:
 
 | Date                    | Race                     | Format |
 | ----------------------- | ------------------------ | ------ |
-| 07.08.22 | Swiss Championship Nyon          |    Sprint    |
 | 28.08.22 | World Cup Bergen          |    Sprint    |
-| 03./04.09.22 | NL Yverdon or BL Hannover         | Sprint       |
+| 04.09.22 | NL Yverdon         | Sprint       |
 | 09./10.09.22 | FISU World Championship University Maceio          |   Sprint, Mixed Relay     |
 
 <br />  

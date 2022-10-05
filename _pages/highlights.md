@@ -30,9 +30,11 @@ ul {
     margin-left: 5px;
 }
 </style>
-Multiple Swiss Championship titles in U20 & U23 category in Triathlon and Duathlon. 3rd U20 Duathlon World Championship. 
+World University Championship Mixed Team Relay bronze and 12th individual.
 
-Recent highlight 15th at EC Caorle in a strong & big field.
+Multiple Swiss Championship titles in U20 & U23 category in Triathlon and Duathlon. Bronze U20 Duathlon World Championship. 
+
+Several top 20 in European Cups.
 
 <style>
 td, th {
@@ -42,6 +44,10 @@ td, th {
 
 
 |   **2022**                 |                                |        |
+|   3rd                      |       FISU Uni Worlds Maceio                   |   Mixed Team Relay     |
+|   12th                      |       FISU Uni Worlds Maceio                   |   Sprint     |
+|   4th                      |       NL Yverdon                   |   Sprint     |
+|   55th                      |       WC Bergen                   |   Sprint     |
 |   12th                      |       BL Schliersee                   |   Sprint     |
 |   21th                      |       EC Holten                   |   Sprint     |
 |   5th                      |       NL Zug                   |   Double Supersprint     |

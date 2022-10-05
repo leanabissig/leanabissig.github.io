@@ -48,7 +48,7 @@ images:
 
 Besides my two teams TG Hütten and TSV Amicitia Viernheim I can count on the support of Roadbikestore Winterthur riding their Vigorelli road bike. In case anyone is interested in riding an Italian manufactured bike you should pass by the store, get a coffee and have a look at their bike selection.
 
-POC sports supports TG Hütten with top end cycling helmets and glasses. In addition, Daniel Meier (sandalife.ch) makes sure my body is always ready to go and manages the training load.
+POC sports supports TG Hütten with top end cycling helmets and glasses. In addition, Daniel Meier (https://www.danimeier.ch) makes sure my body is always ready to go and manages the training load.
 
 Yet, I’m always looking for more support and brands I can represent so feel free to contact me (contact(at)leanabissig.ch).
 
