@@ -4,7 +4,7 @@ title: "About"
 
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/DSC00989.jpg
+  overlay_image: /assets/images/DSC02360.jpg
 excerpt: >
     <br />
     <br />
@@ -34,7 +34,7 @@ I've continued to build since 2021 to become a better and more complete athlete,
 
 **Academic**
 
-Besides sports, I've always aimed for excellence in my studies too. My aim was always to combine sports and my studies as best as possible, which needed quite some organisational skills. I've studied health science and technology at ETH Zürich (Bachelor and Master). I recently defended my master's thesis there, and I'm now doing one last internship to complete my degree by the end of the year.
+Besides sports, I've always aimed for excellence in my studies too. My aim was always to combine sports and my studies as best as possible, which needed quite some organisational skills. I've studied health science and technology at ETH Zürich (Bachelor and Master) and I'm now working part time.
 
 **Some Facts**
 <style>
@@ -44,7 +44,8 @@ td, th {
 </style>
 
 |Born in 1999|
-|Bachelor Health Science and Technology at ETH Zurich|
+|National Elite Team C-Kader Swiss Triathlon|
+|Bachelor & Master in Health Science and Technology at ETH Zurich|
 |Trained by Sabine Pöller|
 |Competing for TG Hütten and TSV Amicita Viernheim (1. Bundesliga Germany)|
 |Training in the larger area of Zurich|

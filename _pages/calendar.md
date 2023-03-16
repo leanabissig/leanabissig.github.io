@@ -3,7 +3,7 @@ title: "Calendar"
 permalink: /calendar/
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/917A3EC8-B466-4D23-BB28-6127802C178A.jpg
+  overlay_image: /assets/images/TT4.jpg
 excerpt: >
     <br />
     <br />
@@ -29,16 +29,12 @@ ul {
 </style>
 
 
-
-No upcoming races at the moment. 
-
-Past events:
-
 | Date                    | Race                     | Format |
 | ----------------------- | ------------------------ | ------ |
-| 28.08.22 | World Cup Bergen          |    Sprint    |
-| 04.09.22 | NL Yverdon         | Sprint       |
-| 09./10.09.22 | FISU World Championship University Maceio          |   Sprint, Mixed Relay     |
+| 25.03.23 | European Cup Quarteira          |    Olympic    |
+| 16.04.23 | Pro Race Wallisellen          |    Supersprint    |
+| 13.05.23 | European Cup Caorle         | Sprint       |
+
 
 <br />  
 {% include gallery id="images" %}

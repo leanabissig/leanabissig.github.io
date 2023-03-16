@@ -4,15 +4,24 @@ permalink: /gallery/
 
 
 images:
- 
-  - url: /assets/images/gallery/IMG_2209.jpg
-    image_path: /assets/images/gallery/IMG_2209.jpg
-    alt: "Duathlon U20 World Championships 2018"
-    title: "Duathlon U20 World Championships 2018"
+
+  - url: /assets/images/gallery/MaceioPodium.jpg
+    image_path: /assets/images/gallery/MaceioPodium.jpg
+    alt: "FISU Uni Worlds Maceio credits @maceio2022"
+    title: "FISU Uni Worlds Maceio credits @maceio2022"
+  - url: /assets/images/gallery/MaceioVelo.jpg
+    image_path: /assets/images/gallery/MaceioVelo.jpg
+    alt: "FISU Uni Worlds Maceio credits @maceio2022"
+    title: "FISU Uni Worlds Maceio credits @maceio2022"
+
   - url: /assets/images/gallery/DSC00577.jpg
     image_path: /assets/images/gallery/DSC00577.jpg
     alt: "5000m Regensdorf 2021"
     title: "5000m Regensdorf 2021"
+  - url: /assets/images/gallery/IMG_2209.jpg
+    image_path: /assets/images/gallery/IMG_2209.jpg
+    alt: "Duathlon U20 World Championships 2018"
+    title: "Duathlon U20 World Championships 2018"
   - url: /assets/images/gallery/IMG_6095.jpg
     image_path: /assets/images/gallery/IMG_6095.jpg
     alt: "BL Saarbrücken Teamsprint 2021"
@@ -94,7 +103,7 @@ images:
 
 ---
 
-Some impressions of my life training, racing, and travelling around the world. Follow me on instagram to find my latest updates.
+Some impressions of my life training, racing, and travelling around the world. Follow me on instagram (@leanabissig) to find my latest updates.
 
 {% include gallery id="images" class="full" layout="half" %}
 

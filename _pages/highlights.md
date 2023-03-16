@@ -3,7 +3,7 @@ permalink: /highlights/
 title: "Highlights"
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/DSC08438.jpg
+  overlay_image: /assets/images/C0062.jpg
 excerpt: >
     <br />
     <br />
@@ -18,7 +18,7 @@ excerpt: >
     
 images:
   - url: /assets/images/IMG_9515.jpg
-    image_path: /assets/images/IMG_9515.jpg
+    image_path: /assets/images/MaceioPodium3.jpg
     alt: "placeholder image 1"
     title: "European Cup Quarteira Olympic Distance 2022. by Peter Horsten"
 ---
@@ -41,8 +41,8 @@ td, th {
    border: none!important;
 }
 </style>
-
-
+|   **2023**                 |                                |        |
+|   16th                      |       Arena Games Sursee                           |   Supersprint     |
 |   **2022**                 |                                |        |
 |   3rd                      |       FISU Uni Worlds Maceio                   |   Mixed Team Relay     |
 |   12th                      |       FISU Uni Worlds Maceio                   |   Sprint     |
