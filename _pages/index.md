@@ -40,7 +40,7 @@ feature_row:
   - image_path: /assets/images/DSC08459.jpg
     alt: "fully responsive"
     title: "Highlights & Goals"
-    excerpt: "World University Bronze Mixed Relay, Swiss Champion U20 & U23, multiple Top 20 European Cups, 3rd U20 Duathlon Worlds. <br /> 
+    excerpt: "Swiss Champion Elite, Top 8 European Champs Middle Distance, World University Bronze Mixed Relay. <br /> 
     Working towards performing at European Championships, World Cups and 70.3 races.
     <br />"
     url: "/highlights/"

@@ -20,7 +20,7 @@ images:
   - url: /assets/images/IMG_9515.jpg
     image_path: /assets/images/MaceioPodium3.jpg
     alt: "placeholder image 1"
-    title: "European Cup Quarteira Olympic Distance 2022. by Peter Horsten"
+    title: "FISU Uni Worlds Maceio"
 ---
 
 
@@ -30,11 +30,14 @@ ul {
     margin-left: 5px;
 }
 </style>
+Swiss Champion Elite & National League overall winner 2023.
+
+Top 8 at European Middle Distance Champs
+
 World University Championship Mixed Team Relay bronze and 12th individual.
 
 Multiple Swiss Championship titles in U20 & U23 category in Triathlon and Duathlon. Bronze U20 Duathlon World Championship. 
 
-Several top 20 in European Cups.
 
 <style>
 td, th {
@@ -42,6 +45,13 @@ td, th {
 }
 </style>
 |   **2023**                 |                                |        |
+|   27th                    |      World Cup Karlovy Vary        |   Olympic     |
+|   8th                    |      European Champs Middle Distance Menen        |   Middle    |
+|   2nd                    |       NL Nyon                           |   Sprint     |
+|   27th                    |       EC Holten                           |   Sprint     |
+|   1st                     |       Swiss Championships Elite Zurich                           |   Sprint     |
+|   20th                    |       EC Kitzbühel                           |   Sprint     |
+|   5th                    |       NL Zug                           |   Double Supersprint     |
 |   16th                      |       Arena Games Sursee                           |   Supersprint     |
 |   **2022**                 |                                |        |
 |   3rd                      |       FISU Uni Worlds Maceio                   |   Mixed Team Relay     |
