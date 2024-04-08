@@ -31,19 +31,16 @@ ul {
 
 | Date                    | Race                     | Format |
 | ----------------------- | ------------------------ | ------ |
-| 13.05.23 | European Cup Caorle          |    Sprint    |
-| 20.05.23 | Bundesliga Kraichgau          |    Supersprint    |
-| 04.06.23 | Zytturm Triathlon         | Doppelsprint       |
-| 17.06.23 | European Cup Kitzbühel         | Sprint       |
-| 25.06.23 | Schweizer Meisterschaften Zürich         | Sprint       |
-| 01.07.23 | European Cup Holten         | Sprint       |
-| 05.08.23 | NL Nyon         | Sprint       |
-| July & August| Training Camp St. Moritz         |        |
-| 27.08.23 | European Champs Middle Distance Menen         | Middle       |
-| 03.09.23 | Bundesliga Hannover         | Sprint       |
-| 10.09.23 | World Cup Karlovy Vary         | Olympic       |
-| 08.10.23 | European Cup Ceuta         | Sprint       |
-| 15.10.23 | European Cup Alanya         | Sprint       |
+| 03.03.24 | 10km de Payerne          |    10km Run    |
+| 23.03.24 | EC Quarteira          |    Olympic    |
+| 14.04.24 | NL Wallisellen          |    Supersprint    |
+| 21.04.24 | 70.3 Valencia          |    Middle    |
+| 19.05.24 | Apfelland Tri         | Middle       |
+| 02.06.24 | 70.3 Rapperswil         | Middle       |
+| 15.06.24 | NL Zug          |    Supersprint    |
+| 22.06.24 | EC Wels          |    Sprint    |
+| 29.06.24 | EC Holten          |    Sprint    |
+
 
 <br />  
 {% include gallery id="images" %}

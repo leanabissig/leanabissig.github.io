@@ -32,7 +32,7 @@ ul {
 </style>
 Swiss Champion Elite & National League overall winner 2023.
 
-Top 8 at European Middle Distance Champs
+Top 8 at European Middle Distance Champs.
 
 World University Championship Mixed Team Relay bronze and 12th individual.
 
@@ -44,11 +44,14 @@ td, th {
    border: none!important;
 }
 </style>
+|   **2024**                 |                                |        |
+|   28th                    |      EC Quarteira       |   Olympic     |
+|   PB                    |      10km de Payerne       |   35min 50s     |
 |   **2023**                 |                                |        |
+|   9th                    |      EC Ceuta        |   Sprint     |
 |   27th                    |      World Cup Karlovy Vary        |   Olympic     |
 |   8th                    |      European Champs Middle Distance Menen        |   Middle    |
 |   2nd                    |       NL Nyon                           |   Sprint     |
-|   27th                    |       EC Holten                           |   Sprint     |
 |   1st                     |       Swiss Championships Elite Zurich                           |   Sprint     |
 |   20th                    |       EC Kitzbühel                           |   Sprint     |
 |   5th                    |       NL Zug                           |   Double Supersprint     |

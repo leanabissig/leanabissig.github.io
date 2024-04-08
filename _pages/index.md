@@ -49,7 +49,7 @@ feature_row:
   - image_path: /assets/images/image001.jpg
     alt: "fully responsive"
     title: "My support"
-    excerpt: "Nothing goes without support and my family, my teams and coaches hold my back. In addition, I can count on the support of numerous partners especially Roadbikestore Winterthur riding their own Vigorelli."
+    excerpt: "Nothing goes without support and my family, my teams and coaches hold my back. In addition, I can count on the support of numerous partners especially Roadbikestore Winterthur riding their own Vigorelli & Saucony."
     url: "/partners/"
     btn_class: "btn--primary"
     btn_label: "Learn more"

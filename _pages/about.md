@@ -30,7 +30,7 @@ I've loved sports since I was a small child. I began competitive swimming at the
 
 In addition, back in Switzerland, I joined the local running team and qualified for my first Youth European Championships in 2016. I won the youth league series the same year. Following that, I completed my Matura and began my university studies at ETH Zurich in 2017. This was the point at which I began to become more professional in my training routine, which included swimming at the national performance center in Wallisellen. There I also met my still-current coach, Sabine Pöller. In 2018, I won the Swiss U20 triathlon and duathlon titles, as well as my first international medal, by finishing third at the U20 World Duathlon Championships in Denmark. The Home World Championships in Lausanne, where I competed in the U23 category, were unquestionably the highlight of 2019. Then, in 2020, with COVID, there was obviously not much going on, but I became another Swiss Champion in the U23 category. 
 
-I've continued to build since 2021 to become a better and more complete athlete, both physically and mentally, as well as in terms of experience. I am currently competing in European Cups and Bundesliga races, and I enjoy mixing in some Olympic Distance non-drafting and 70.3 races.
+I've continued to build since 2021 to become a better and more complete athlete, both physically and mentally, as well as in terms of experience. I am currently competing in European Cups, World Cups and Bundesliga races, and I enjoy mixing in some Olympic Distance non-drafting and 70.3 races.
 
 **Academic**
 
@@ -46,7 +46,7 @@ td, th {
 |Born in 1999|
 |National Elite Team C-Kader Swiss Triathlon|
 |Bachelor & Master in Health Science and Technology at ETH Zurich|
-|Trained by Sabine Pöller|
+|Coached by Jordi Meulenberg & Artur Melo (2018-2023 by Sabine Pöller)|
 |Competing for TG Hütten and TSV Amicita Viernheim (1. Bundesliga Germany)|
 |Training in the larger area of Zurich|
 |Grew up in Zug and competed 8 years for Checkpoint Zugerland|
