@@ -35,7 +35,7 @@ ul {
 | 23.03.24 | EC Quarteira          |    Olympic    |
 | 14.04.24 | NL Wallisellen          |    Supersprint    |
 | 21.04.24 | 70.3 Valencia          |    Middle    |
-| 19.05.24 | Apfelland Tri         | Middle       |
+| 19.05.24 | Apfelland        | Middle       |
 | 02.06.24 | 70.3 Rapperswil         | Middle       |
 | 15.06.24 | NL Zug          |    Supersprint    |
 | 22.06.24 | EC Wels          |    Sprint    |

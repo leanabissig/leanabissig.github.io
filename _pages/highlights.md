@@ -45,6 +45,8 @@ td, th {
 }
 </style>
 |   **2024**                 |                                |        |
+|   12th                    |      70.3 Valencia       |   Middle     |
+|   1st                    |      NL Wallisellen       |   Supersprint     |
 |   28th                    |      EC Quarteira       |   Olympic     |
 |   PB                    |      10km de Payerne       |   35min 50s     |
 |   **2023**                 |                                |        |
