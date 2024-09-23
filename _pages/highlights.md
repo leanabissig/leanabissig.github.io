@@ -30,7 +30,11 @@ ul {
     margin-left: 5px;
 }
 </style>
-Swiss Champion Elite & National League overall winner 2023.
+Swiss Champion Elite & National League overall winner 2023 & 2024.
+
+Win at Apfelland Triathlon Middle Distance, 2nd at Allgäu Triathlon
+
+World Cup Top 20, European Cup Top 10
 
 Top 8 at European Middle Distance Champs.
 
@@ -45,6 +49,14 @@ td, th {
 }
 </style>
 |   **2024**                 |                                |        |
+|   20th                    |      World Cup Valencia       |   Sprint     |
+|   4th                    |      SM Yverdon       |   Eliminator     |
+|   2nd                    |      Allgäu Triathlon       |   Middle     |
+|   2nd                    |      NL Nyon     |   Sprint     |
+|   15th                    |      BL Tübingen       |   Sprint     |
+|   13th                    |      EC Wels       |   Sprint     |
+|   2nd                    |      NL Zug       |   Eliminator     |
+|   1st                    |      Apfelland Triathlon (PTO Silver)       |   Middle     |
 |   12th                    |      70.3 Valencia       |   Middle     |
 |   1st                    |      NL Wallisellen       |   Supersprint     |
 |   28th                    |      EC Quarteira       |   Olympic     |
