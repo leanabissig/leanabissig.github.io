@@ -79,3 +79,5 @@ Quellen, geprüft am 07.09.2026:
 Die drei kommenden Starts wurden von Leana als Saisonplanung genannt. Organisationsdaten können sich ändern und müssen bei Terminänderungen im HTML angepasst werden. Die Datumsautomatik fragt keine externen Renndaten ab.
 
 Die Saisonliste zeigt heutige und zukünftige Rennen mit dem nächsten Termin zuerst, danach vergangene Rennen nach Datum absteigend. Die Reihenfolge wird zusammen mit den Häkchen nach dem lokalen Renntag automatisch aktualisiert.
+
+Highlight-Logos sind lokal in `assets/onepager/races/` gespeichert. Zuordnungen und Originalquellen stehen in [races/SOURCES.md](assets/onepager/races/SOURCES.md). Linkpfeile sind dekorative Inline-SVGs mit expliziten Abmessungen, damit Safari keine Emoji-Schrift verwendet.

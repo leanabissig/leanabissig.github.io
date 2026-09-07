@@ -1436,3 +1436,96 @@ footer a {
 .logo-card:focus-visible .pure-logo {
   filter: none;
 }
+
+/* SVG arrows avoid platform-dependent emoji glyphs, including Safari. */
+.link-arrow,
+.social-links .link-arrow {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.12em;
+  flex-shrink: 0;
+}
+
+/* Compact series/event marks beside each selected result. */
+.result {
+  grid-template-columns: 100px minmax(0, 1fr) 112px 100px;
+}
+.result-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  min-height: 48px;
+}
+.race-logo {
+  width: 112px;
+  height: 48px;
+  object-fit: contain;
+  filter: grayscale(1);
+  mix-blend-mode: multiply;
+}
+.race-logo-t100,
+.race-logo-apfelland {
+  filter: brightness(0);
+  opacity: 0.65;
+}
+.race-logo-t100 {
+  width: 78px;
+}
+@media (max-width: 700px) {
+  .result {
+    grid-template-columns: 66px minmax(0, 1fr) 88px;
+    gap: 4px 12px;
+  }
+  .result .place {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  .result .place > span {
+    display: block;
+    margin: 6px 0 0;
+  }
+  .result-badge {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    width: 88px;
+  }
+  .race-logo {
+    max-width: 88px;
+    height: 42px;
+  }
+  .result time {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+    margin-top: 0;
+  }
+}
+@media (max-width: 480px) {
+  .result {
+    grid-template-columns: 48px minmax(0, 1fr) 76px;
+    column-gap: 10px;
+  }
+  .result-badge,
+  .race-logo {
+    width: 76px;
+  }
+  .race-logo-t100 {
+    width: 64px;
+  }
+}
+
+/* Show the Pro Series shield from the official combined sponsor artwork. */
+.pro-series-mark {
+  display: block;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+}
+.pro-series-mark .race-logo {
+  width: 118px;
+  max-width: none;
+  height: 48px;
+  object-fit: fill;
+}
