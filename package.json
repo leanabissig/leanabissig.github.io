@@ -1,0 +1,22 @@
+{
+  "name": "leana-bissig-website",
+  "version": "1.0.0",
+  "description": "Static one-page athlete website; dependencies are for browser checks only.",
+  "scripts": {
+    "preview": "python3 -m http.server 8000",
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leanabissig/leanabissig.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leanabissig/leanabissig.github.io/issues"
+  },
+  "homepage": "https://github.com/leanabissig/leanabissig.github.io#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0"
+  },
+  "private": true
+}
