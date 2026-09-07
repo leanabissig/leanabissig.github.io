@@ -18,19 +18,19 @@
     storyP1:
       "It all started in the water. I was a competitive swimmer as a child. But I wanted to run and try something new, too. At the end of August 2012, I went to my first triathlon training session.",
     storyP2:
-      "The sport has stayed with me ever since. My path gradually led from short-course racing to longer distances. I wasn’t right at the front in my U23 years. But I kept going, kept learning and got better over the years.",
+      "The sport has stayed with me ever since. My path gradually led from short-course racing to longer distances. I wasn’t right at the front in my U23 years. But I kept going, kept learning and got better over the years. After several Swiss U20 and U23 championship titles, I also won the elite Swiss sprint triathlon title in 2023 and raced at the highest level of short-course triathlon, the World Triathlon Championship Series (WTCS).",
     storyP3:
       "Alongside professional sport, I work 50% as a business analyst. After studying at ETH Zurich, I still value that different perspective. When there’s time: cooking, documentaries and podcasts.",
     portraitAlt: "Leana smiling in a green sports shirt in the evening sun",
     sinceLabel: "In triathlon since",
     homeLabel: "At home in",
     driveLabel: "What drives me",
-    driveValue: "Getting better.",
+    driveValue: "To bring out the best in myself.",
     highlightsEyebrow: "Highlights & what’s next",
     highlightsHeading: "A lot behind me.\nMore still ahead.",
     allResults: "All results on PTO",
     selectedResults: "Selected results",
-    placeSuffix: " place",
+    placeLabel: "place",
     middleDistance: "Middle distance",
     longDistance: "Long distance",
     seasonEyebrow: "Looking ahead",
@@ -183,12 +183,11 @@
     ariaNodes.forEach((node) => {
       node.setAttribute("aria-label", dictionary[node.dataset.i18nAria]);
     });
-    if (language === "en")
-      document.querySelectorAll(".place").forEach((place) => {
-        const rank = place.firstChild.textContent.trim();
-        place.querySelector("span").textContent =
-          ({ 1: "st", 2: "nd", 3: "rd" }[rank] || "th") + " place";
-      });
+    document.querySelectorAll(".place").forEach((place) => {
+      const rank = place.dataset.rank;
+      place.querySelector(".place-ordinal").textContent =
+        language === "en" ? { 1: "st", 2: "nd", 3: "rd" }[rank] || "th" : ".";
+    });
     document.documentElement.lang = language;
     document
       .querySelectorAll("[data-language]")

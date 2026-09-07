@@ -418,7 +418,7 @@ h3 {
   letter-spacing: -1px;
   line-height: 1;
 }
-.place > span {
+.place-label {
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0;
@@ -804,7 +804,7 @@ footer a {
     grid-row: span 2;
     font-size: 29px;
   }
-  .place > span {
+  .place-label {
     display: block;
     margin: 6px 0 0;
     font-size: 0.75rem;
@@ -1482,7 +1482,7 @@ footer a {
     grid-column: 1;
     grid-row: 1 / span 2;
   }
-  .result .place > span {
+  .result .place-label {
     display: block;
     margin: 6px 0 0;
   }
@@ -1528,4 +1528,14 @@ footer a {
   max-width: none;
   height: 48px;
   object-fit: fill;
+}
+
+/* Keep the ordinal attached to its number at every viewport width. */
+.place-number {
+  display: inline-block;
+  white-space: nowrap;
+}
+.place-ordinal {
+  font-size: 0.5em;
+  letter-spacing: 0;
 }
