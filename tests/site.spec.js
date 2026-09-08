@@ -7,19 +7,19 @@ test("tabs, keyboard, deep links and browser history preserve the selected secti
   await page.goto("/?tab=story&lang=de");
   await expect(page.getByRole("tabpanel")).toHaveCount(1);
   await expect(page.locator("#story")).toBeVisible();
-  await page.getByRole("tab", { name: "Highlights & Goals" }).click();
+  await page.getByRole("tab", { name: "Highlights & Ausblick" }).click();
   await expect(page.locator("#highlights")).toBeVisible();
   await expect(page.locator("#story")).toBeHidden();
   await page
-    .getByRole("tab", { name: "Highlights & Goals" })
+    .getByRole("tab", { name: "Highlights & Ausblick" })
     .press("ArrowRight");
-  await expect(page.getByRole("tab", { name: "My Support" })).toBeFocused();
+  await expect(page.getByRole("tab", { name: "Meine Partner" })).toBeFocused();
   await expect(page.locator("#support")).toBeVisible();
   await page.goBack();
   await expect(page.locator("#highlights")).toBeVisible();
   await page.reload();
   await expect(page.locator("#highlights")).toBeVisible();
-  await page.getByRole("tab", { name: "Highlights & Goals" }).press("Home");
+  await page.getByRole("tab", { name: "Highlights & Ausblick" }).press("Home");
   await expect(page.locator("#story")).toBeVisible();
   await page.goto("/#support");
   await expect(page.locator("#support")).toBeVisible();
@@ -33,6 +33,15 @@ test("language switches text and accessibility labels without losing the active 
   await page.goto("/?tab=highlights&lang=de");
   await page.getByRole("button", { name: "English", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(
+    page.getByRole("tab", { name: "My Story", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("tab", { name: "Highlights & Goals", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("tab", { name: "My Support", exact: true }),
+  ).toBeVisible();
   await expect(page.locator("#highlights")).toBeVisible();
   await expect(page.locator(".goal h3")).toHaveText("The goal: Kona.");
   await expect(page.locator(".place").last()).toHaveText("1st place");
@@ -42,6 +51,18 @@ test("language switches text and accessibility labels without losing the active 
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await page.getByRole("button", { name: "Deutsch", exact: true }).click();
+  await expect(
+    page.getByRole("tab", { name: "Mein Weg", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("tab", { name: "Highlights & Ausblick", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("tab", { name: "Meine Partner", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".hero-copy > .eyebrow")).toHaveText(
+    "Schweizer Profi-Triathletin",
+  );
   await expect(page.locator(".goal h3")).toHaveText("Das Ziel: Kona.");
   await expect(page.locator(".place").last()).toHaveText("1. Rang");
 });
@@ -53,7 +74,7 @@ test("photos load, wrap in both directions and contact links have real destinati
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/?lang=en");
   for (let i = 0; i < 4; i++) {
-    const photo = page.locator(".hero-photo:visible");
+    const photo = page.locator('.hero-photo[aria-hidden="false"]');
     await expect(photo).toHaveCount(1);
     await expect
       .poll(() => photo.evaluate((img) => img.complete && img.naturalWidth > 0))
@@ -63,6 +84,11 @@ test("photos load, wrap in both directions and contact links have real destinati
   await page
     .getByRole("button", { name: "Previous photo", exact: true })
     .click();
+  await expect(page.locator("#photo-count")).toHaveText("01 / 03");
+  await page.locator(".hero-photos").focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator("#photo-count")).toHaveText("02 / 03");
+  await page.keyboard.press("ArrowLeft");
   await expect(page.locator("#photo-count")).toHaveText("01 / 03");
   await expect(page.locator(".contact-button")).toHaveAttribute(
     "href",
@@ -145,12 +171,19 @@ test("season dates check off only after the local race day and never invent resu
   await page.clock.install({ time: new Date("2026-09-07T12:00:00Z") });
   await page.goto("/?tab=highlights&lang=de");
   await expect(page.locator(".season-race.is-past")).toHaveCount(5);
-  const seasonDates = () => page.locator(".season-race").evaluateAll(
-    (rows) => rows.map((row) => row.dataset.date),
-  );
+  const seasonDates = () =>
+    page
+      .locator(".season-race")
+      .evaluateAll((rows) => rows.map((row) => row.dataset.date));
   expect(await seasonDates()).toEqual([
-    "2026-09-12", "2026-10-17", "2026-12-06", "2026-08-30",
-    "2026-07-26", "2026-07-05", "2026-06-21", "2026-04-19",
+    "2026-09-12",
+    "2026-10-17",
+    "2026-12-06",
+    "2026-08-30",
+    "2026-07-26",
+    "2026-07-05",
+    "2026-06-21",
+    "2026-04-19",
   ]);
   const nice = page.locator('.season-race[data-date="2026-09-12"]');
   await expect(nice.locator(".race-state")).toHaveText("Geplant");
@@ -166,8 +199,14 @@ test("season dates check off only after the local race day and never invent resu
   await expect(nice).toHaveClass(/is-past/);
   await expect(nice.locator(".race-state")).toHaveText("Vergangen");
   expect(await seasonDates()).toEqual([
-    "2026-10-17", "2026-12-06", "2026-09-12", "2026-08-30",
-    "2026-07-26", "2026-07-05", "2026-06-21", "2026-04-19",
+    "2026-10-17",
+    "2026-12-06",
+    "2026-09-12",
+    "2026-08-30",
+    "2026-07-26",
+    "2026-07-05",
+    "2026-06-21",
+    "2026-04-19",
   ]);
   await page.getByRole("button", { name: "English", exact: true }).click();
   await expect(nice.locator(".race-state")).toHaveText("Past date");
@@ -183,7 +222,79 @@ test("season dates check off only after the local race day and never invent resu
   await expect(australia).toHaveClass(/is-past/);
   await expect(australia.locator(".race-state")).toHaveText("Past date");
   expect(await seasonDates()).toEqual([
-    "2026-12-06", "2026-10-17", "2026-09-12", "2026-08-30",
-    "2026-07-26", "2026-07-05", "2026-06-21", "2026-04-19",
+    "2026-12-06",
+    "2026-10-17",
+    "2026-09-12",
+    "2026-08-30",
+    "2026-07-26",
+    "2026-07-05",
+    "2026-06-21",
+    "2026-04-19",
   ]);
+});
+
+test("touch swipes change photos while vertical gestures scroll the page", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+  });
+  const page = await context.newPage();
+  await page.goto("http://127.0.0.1:8017/?lang=de");
+  const strip = page.locator(".hero-photos");
+  await strip.scrollIntoViewIfNeeded();
+  const session = await context.newCDPSession(page);
+  async function swipe(dx, dy) {
+    const box = await strip.boundingBox();
+    const x = box.x + box.width * (dx < 0 ? 0.85 : dx > 0 ? 0.15 : 0.5);
+    const y = Math.max(180, Math.min(650, box.y + box.height / 2));
+    await session.send("Input.dispatchTouchEvent", {
+      type: "touchStart",
+      touchPoints: [{ x, y }],
+    });
+    for (let step = 1; step <= 12; step++) {
+      await session.send("Input.dispatchTouchEvent", {
+        type: "touchMove",
+        touchPoints: [{ x: x + (dx * step) / 12, y: y + (dy * step) / 12 }],
+      });
+      await page.waitForTimeout(20);
+    }
+    await session.send("Input.dispatchTouchEvent", {
+      type: "touchEnd",
+      touchPoints: [],
+    });
+  }
+  async function expectPhoto(index) {
+    await expect(page.locator("#photo-count")).toHaveText(`0${index + 1} / 03`);
+    await expect
+      .poll(() =>
+        strip.evaluate((el) =>
+          Math.abs(
+            el.scrollLeft / el.clientWidth - Number(el.dataset.expectedIndex),
+          ),
+        ),
+      )
+      .toBeLessThan(0.02);
+  }
+  await strip.evaluate((el) => {
+    el.dataset.expectedIndex = "1";
+  });
+  await swipe(-240, 0);
+  await expectPhoto(1);
+  await strip.evaluate((el) => {
+    el.dataset.expectedIndex = "0";
+  });
+  await swipe(240, 0);
+  await expectPhoto(0);
+  await swipe(-15, 0);
+  await expectPhoto(0);
+  const before = await page.evaluate(() => scrollY);
+  await swipe(0, -210);
+  await expect
+    .poll(() => page.evaluate(() => scrollY))
+    .toBeGreaterThan(before + 80);
+  await expect(page.locator("#photo-count")).toHaveText("01 / 03");
+  await context.close();
 });

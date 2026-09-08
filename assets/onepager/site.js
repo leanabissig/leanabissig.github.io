@@ -5,6 +5,7 @@
     skip: "Skip to content",
     previousPhoto: "Previous photo",
     nextPhoto: "Next photo",
+    photosLabel: "Photos of Leana",
     photoAfterRace: "Leana laughing in conversation after a race",
     photoCycling: "Leana in team kit on her Canyon time-trial bike",
     photoBikePortrait: "Leana in team kit with her bike in the evening light",
@@ -13,6 +14,10 @@
     contact: "Contact",
     socialLinks: "Social media & contact",
     topics: "Explore",
+    heroEyebrow: "Swiss professional triathlete",
+    tabStory: "My Story",
+    tabHighlights: "Highlights & Goals",
+    tabSupport: "My Support",
     storyEyebrow: "My journey",
     storyHeading: "Step by step.\nAlways myself.",
     storyP1:
@@ -281,16 +286,51 @@
     if (!document.hidden) updateSeason();
   });
   document.querySelector(".languages").hidden = false;
-  const photos = [...document.querySelectorAll(".hero-photo")];
+  const photoStrip = document.querySelector(".hero-photos");
+  const photos = [...photoStrip.querySelectorAll(".hero-photo")];
+  const photoCount = document.querySelector("#photo-count");
   let photoIndex = 0;
-  function changePhoto(step) {
-    photoIndex = (photoIndex + step + photos.length) % photos.length;
-    photos.forEach((photo, index) => {
-      photo.hidden = index !== photoIndex;
+  function selectPhoto(index) {
+    photoIndex = index;
+    photos.forEach((photo, position) => {
+      photo.setAttribute("aria-hidden", String(position !== photoIndex));
     });
-    document.querySelector("#photo-count").textContent =
-      `${String(photoIndex + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
+    photoCount.textContent = `${String(photoIndex + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
   }
+  photoStrip.classList.add("is-swipeable");
+  photoStrip.tabIndex = 0;
+  photos.forEach((photo) => {
+    photo.hidden = false;
+    photo.draggable = false;
+  });
+  selectPhoto(0);
+  // Native scrolling follows the finger and keeps vertical scrolling/pinch zoom.
+  photoStrip.addEventListener(
+    "scroll",
+    () => {
+      const index = Math.max(
+        0,
+        Math.min(
+          photos.length - 1,
+          Math.round(photoStrip.scrollLeft / photoStrip.clientWidth),
+        ),
+      );
+      if (index !== photoIndex) selectPhoto(index);
+    },
+    { passive: true },
+  );
+  function changePhoto(step) {
+    selectPhoto((photoIndex + step + photos.length) % photos.length);
+    photoStrip.scrollTo({
+      left: photoIndex * photoStrip.clientWidth,
+      behavior: "auto",
+    });
+  }
+  photoStrip.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    changePhoto(event.key === "ArrowRight" ? 1 : -1);
+  });
   document
     .querySelector("#previous-photo")
     .addEventListener("click", () => changePhoto(-1));

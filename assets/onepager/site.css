@@ -1539,3 +1539,30 @@ footer a {
   font-size: 0.5em;
   letter-spacing: 0;
 }
+
+/* Native horizontal swiping with snap points; enabled only with JavaScript. */
+.hero-photos.is-swipeable {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.hero-photos.is-swipeable::-webkit-scrollbar {
+  display: none;
+}
+.hero-photos.is-swipeable .hero-photo {
+  position: relative;
+  inset: auto;
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.hero-photos.is-swipeable:focus-visible {
+  outline-offset: -5px;
+}

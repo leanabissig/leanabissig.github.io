@@ -6,7 +6,7 @@
     <title>Leana Bissig · Swiss Professional Triathlete</title>
     <meta
       name="description"
-      content="Leana Bissig – Schweizer Profi-Triathletin aus Winterthur. Meine Geschichte, sportliche Highlights und die Partner an meiner Seite."
+      content="Leana Bissig – Schweizer Profi-Triathletin aus Winterthur. Mein Weg, sportliche Highlights und die Partner an meiner Seite."
     />
     <meta name="theme-color" content="#f7f7f2" />
     <link rel="canonical" href="https://leanabissig.ch/" />
@@ -17,7 +17,7 @@
     />
     <meta
       property="og:description"
-      content="Swim. Bike. Run. Meine Geschichte, meine Ziele und mein Weg auf der Mittel- und Langdistanz."
+      content="Swim. Bike. Run. Mein Weg, meine Ziele und mein Weg auf der Mittel- und Langdistanz."
     />
     <meta property="og:url" content="https://leanabissig.ch/" />
     <meta
@@ -30,8 +30,8 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/assets/onepager/favicon.svg" />
-    <link rel="stylesheet" href="/assets/onepager/site.css?v=20260907-ranks" />
-    <script src="/assets/onepager/site.js?v=20260907-story" defer></script>
+    <link rel="stylesheet" href="/assets/onepager/site.css?v=20260908-swipe" />
+    <script src="/assets/onepager/site.js?v=20260908-swipe" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#content" data-i18n="skip">Zum Inhalt</a>
@@ -91,14 +91,21 @@
       <main>
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Swiss professional triathlete</p>
+            <p class="eyebrow" data-i18n="heroEyebrow">
+              Schweizer Profi-Triathletin
+            </p>
             <h1 id="hero-title">
               Leana<br />
               Bissig<span>.</span>
             </h1>
           </div>
           <div class="hero-media">
-            <div class="hero-photos">
+            <div
+              class="hero-photos"
+              role="group"
+              aria-label="Fotos von Leana"
+              data-i18n-aria="photosLabel"
+            >
               <img
                 class="hero-photo"
                 src="/assets/onepager/images/bike-portrait-1200.webp"
@@ -272,17 +279,20 @@
         <div id="content" class="content" tabindex="-1">
           <nav class="tabs" aria-label="Themen" data-i18n-aria="topics">
             <a id="tab-story" class="tab" href="#story" data-tab="story"
-              ><span class="tab-number" aria-hidden="true">01</span> My Story</a
+              ><span class="tab-number" aria-hidden="true">01</span>
+              <span data-i18n="tabStory">Mein Weg</span></a
             ><a
               id="tab-highlights"
               class="tab"
               href="#highlights"
               data-tab="highlights"
-              ><span class="tab-number" aria-hidden="true">02</span> Highlights
-              &amp; Goals</a
+              ><span class="tab-number" aria-hidden="true">02</span>
+              <span data-i18n="tabHighlights"
+                >Highlights &amp; Ausblick</span
+              ></a
             ><a id="tab-support" class="tab" href="#support" data-tab="support"
-              ><span class="tab-number" aria-hidden="true">03</span> My
-              Support</a
+              ><span class="tab-number" aria-hidden="true">03</span>
+              <span data-i18n="tabSupport">Meine Partner</span></a
             >
           </nav>
           <section id="story" class="panel" aria-labelledby="story-heading">
@@ -302,11 +312,11 @@
                   Seitdem hat mich der Sport nicht mehr losgelassen. Von der
                   Kurzdistanz führte mein Weg schrittweise zu längeren Rennen.
                   Ich war in den U23-Jahren nicht ganz vorne dabei. Aber ich
-                  blieb dran, lernte dazu und wurde über die Jahre besser.
-                  Nach mehreren Schweizermeistertiteln in den Kategorien U20
-                  und U23 gewann ich 2023 auch den Elite-Titel im Sprinttriathlon
-                  und bestritt Rennen bis auf Stufe der World Triathlon
-                  Championship Series (WTCS).
+                  blieb dran, lernte dazu und wurde über die Jahre besser. Nach
+                  mehreren Schweizermeistertiteln in den Kategorien U20 und U23
+                  gewann ich 2023 auch den Elite-Titel im Sprinttriathlon und
+                  bestritt Rennen bis auf Stufe der World Triathlon Championship
+                  Series (WTCS).
                 </p>
                 <p data-i18n="storyP3">
                   Neben dem Profisport arbeite ich zu 50 Prozent als Business
@@ -341,7 +351,9 @@
               <div>
                 <span class="eyebrow" data-i18n="driveLabel"
                   >Was mich antreibt</span
-                ><strong data-i18n="driveValue">Das Beste aus mir herausholen.</strong>
+                ><strong data-i18n="driveValue"
+                  >Das Beste aus mir herausholen.</strong
+                >
               </div>
             </div>
           </section>
