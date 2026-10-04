@@ -81,6 +81,10 @@ test("language switches text and accessibility labels without losing the active 
   await expect(page.locator('.place[data-rank="23"]')).toHaveText("23. Rang");
   // Results show rank, race and distance only; finish times live on PTO.
   await expect(page.locator(".results")).not.toContainText(/\d:\d{2}:\d{2}/);
+  // Pro Series is plain context text, not a label, so the four labels stay rare.
+  const zell = page.locator(".result", { hasText: "Zell am See" });
+  await expect(zell.locator("p")).toHaveText("Mitteldistanz · Ironman Pro Series");
+  await expect(zell.locator(".result-tag")).toHaveCount(0);
 });
 
 test("photos load, wrap in both directions and contact links have real destinations", async ({
