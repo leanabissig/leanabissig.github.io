@@ -22,6 +22,14 @@ Die Reiter sind lokalisiert: «Mein Weg», «Highlights & Ausblick», «Meine Pa
 
 Die öffentliche Kontaktadresse `contact@leanabissig.ch` stammt aus der bisherigen Partnerseite. Partnerangaben stammen aus Leanas Gesprächsangaben, Resultate aus dem [PTO-Profil](https://stats.protriathletes.org/athlete/leana-bissig), Stand 04.10.2026. Kona wird als Qualifikationsziel 2027 formuliert. Quellen für die Partnerlinks: [Hotel Jakob](https://www.hoteljakob.at/de/pro-team/leana-bissig-a97), bisherige Saucony-Verlinkung und [Sensolar](https://sensolar.ch/).
 
+Alle Mail-Links tragen eine Betreffzeile: «Kontakt · leanabissig.ch» (Kontakt-Button oben, Footer) und «Partnerschaft & Medien · leanabissig.ch» (Kontaktbereich). Die englischen Betreffe setzt `site.js` über `data-i18n-subject`. So sind Anfragen über die Website ohne Tracking erkennbar: im Postfach nach «leanabissig.ch» im Betreff filtern. Absender können den Betreff ändern; die Zählung ist deshalb eine Untergrenze.
+
+Strukturierte Daten (schema.org `Person`, JSON-LD im `<head>`) verweisen auf Instagram, LinkedIn und PTO und nennen Team, Wohnort, ETH und den MSc in Health Sciences and Technology. Bei Team- oder Profiländerungen mitpflegen.
+
+Resultate, deren Rang allein zu wenig Kontext gibt, erhalten ein `.result-tag`: «Weltmeisterschaft» (Nizza, 23. Rang), «Langdistanz-Debüt» (Ironman Switzerland; im PTO-Profil kein früherer Langdistanzstart, von Leana zu bestätigen), «T100 World Tour» (Wollongong, 100 km · 3:38:09 laut PTO) und «Erster internationaler Profisieg» (Apfelland; Leanas eigene Einordnung, Sieg im PTO-Profil). Höchstens drei bis vier Labels, damit sie auffallen.
+
+Unter dem Kontaktbereich steht ein aufklappbares «Kurzporträt für Medien» in der dritten Person (DE/EN). «Text kopieren» erscheint nur mit JavaScript und Zwischenablage-Zugriff (HTTPS oder localhost); sonst bleibt der Text markierbar. Bei neuen Resultaten oder Zielen mitpflegen.
+
 ## Bilder
 
 | Verwendung | Webdatei | Von Leana gewählte Quelle |
@@ -72,7 +80,7 @@ Unter Highlights & Goals stehen sechs gelaufene Rennen aus 2026 — inklusive de
 Quellen, zuletzt geprüft am 04.10.2026:
 
 - Bisherige Rennen 2026 und Cascais-Podium vom 19.10.2024 (3. Rang, 4:16:28): [PTO](https://stats.protriathletes.org/athlete/leana-bissig).
-- Nizza, Frauenrennen am 12.09.2026, 22. Rang in 4:39:40: [PTO-Profil](https://stats.protriathletes.org/athlete/leana-bissig) und [offizielle Rennresultate](https://stats.protriathletes.org/race/im-703-world-championship/2026/results); Termin und Rennlogo über die [offizielle WM-Seite](https://www.ironman.com/im703-world-championship).
+- Nizza, Frauenrennen am 12.09.2026, 23. Rang in 4:39:40. PTO ([Profil](https://stats.protriathletes.org/athlete/leana-bissig), [Rennresultate](https://stats.protriathletes.org/race/im-703-world-championship/2026/results)) zeigt fälschlich den 22. Rang; Korrektur am 04.10.2026 auf Leanas Angabe. Bei einer PTO-Korrektur hier nachführen; Termin und Rennlogo über die [offizielle WM-Seite](https://www.ironman.com/im703-world-championship).
 - Cascais 70.3 am 17.10.2026: [Veranstalter-Registrierung](https://regprt.ironman.com/event/2026-ironman-703-portugal-cascais).
 - Ironman Western Australia am 06.12.2026: [offizieller Veranstaltungsplan](https://www.ironman.com/races/im-western-australia/schedule).
 

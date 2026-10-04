@@ -432,6 +432,27 @@ h3 {
   font-size: 0.8125rem;
   color: var(--muted);
 }
+/* Context for results whose rank alone undersells the race, e.g. a World Championship. */
+.result-tag {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+@media (max-width: 700px) {
+  .result-tag {
+    display: block;
+    width: fit-content;
+    margin: 4px 0;
+  }
+}
 .result time {
   font-size: 0.8125rem;
   text-align: right;
@@ -553,6 +574,51 @@ h3 {
 }
 .contact-button:hover {
   background: #cbdca5;
+}
+/* Copy-ready third-person bio for journalists; closed by default. */
+.press-bio {
+  padding: 0 0 34px;
+}
+.press-bio summary {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  list-style: none;
+}
+.press-bio summary::-webkit-details-marker {
+  display: none;
+}
+.press-bio summary::after {
+  content: "+";
+  font-weight: 500;
+}
+.press-bio[open] summary::after {
+  content: "–";
+}
+.press-bio p {
+  max-width: 640px;
+  margin-top: 14px;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.copy-bio {
+  margin-top: 14px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.copy-bio:hover {
+  border-color: var(--muted);
 }
 footer {
   display: flex;

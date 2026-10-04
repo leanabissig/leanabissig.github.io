@@ -45,8 +45,19 @@ test("language switches text and accessibility labels without losing the active 
   await expect(page.locator("#highlights")).toBeVisible();
   await expect(page.locator(".goal h3")).toHaveText("The goal: Kona.");
   await expect(page.locator(".place").last()).toHaveText("1st place");
-  // Ranks past 20 keep a correct suffix in the showcase too: 22nd, not 22th.
-  await expect(page.locator('.place[data-rank="22"]')).toHaveText("22nd place");
+  // Ranks past 20 keep a correct suffix in the showcase too: 23rd, not 23th.
+  await expect(page.locator('.place[data-rank="23"]')).toHaveText("23rd place");
+  await expect(page.locator(".result-tag")).toHaveText([
+    "World Championship",
+    "Long-distance debut",
+    "T100 World Tour",
+    "First international pro win",
+  ]);
+  await page.locator(".press-bio summary").click();
+  await expect(page.locator("#press-bio-text")).toContainText(
+    "master’s degree in Health Sciences and Technology",
+  );
+  await expect(page.locator(".copy-bio")).toHaveText("Copy text");
   await expect(
     page.getByRole("button", { name: "Next photo", exact: true }),
   ).toBeVisible();
@@ -67,7 +78,7 @@ test("language switches text and accessibility labels without losing the active 
   );
   await expect(page.locator(".goal h3")).toHaveText("Das Ziel: Kona.");
   await expect(page.locator(".place").last()).toHaveText("1. Rang");
-  await expect(page.locator('.place[data-rank="22"]')).toHaveText("22. Rang");
+  await expect(page.locator('.place[data-rank="23"]')).toHaveText("23. Rang");
 });
 
 test("photos load, wrap in both directions and contact links have real destinations", async ({
@@ -95,8 +106,13 @@ test("photos load, wrap in both directions and contact links have real destinati
   await expect(page.locator("#photo-count")).toHaveText("01 / 03");
   await expect(page.locator(".contact-button")).toHaveAttribute(
     "href",
-    "mailto:contact@leanabissig.ch",
+    "mailto:contact@leanabissig.ch?subject=Partnerships%20%26%20press%20%C2%B7%20leanabissig.ch",
   );
+  await expect(page.locator("footer a")).toHaveAttribute(
+    "href",
+    "mailto:contact@leanabissig.ch?subject=Contact%20%C2%B7%20leanabissig.ch",
+  );
+  await expect(page).toHaveTitle("Leana Bissig · Swiss Professional Triathlete");
   expect(errors).toEqual([]);
 });
 
@@ -140,8 +156,14 @@ test("all content and contact remain available without JavaScript", async ({
   await expect(page.locator(".photo-controls")).toBeHidden();
   await expect(page.locator(".contact-button")).toHaveAttribute(
     "href",
-    "mailto:contact@leanabissig.ch",
+    "mailto:contact@leanabissig.ch?subject=Partnerschaft%20%26%20Medien%20%C2%B7%20leanabissig.ch",
   );
+  await expect(page).toHaveTitle("Leana Bissig · Schweizer Profi-Triathletin");
+  await page.locator(".press-bio summary").click();
+  await expect(page.locator("#press-bio-text")).toContainText(
+    "Master in Health Sciences and Technology",
+  );
+  await expect(page.locator(".copy-bio")).toBeHidden();
   await context.close();
 });
 
@@ -191,7 +213,7 @@ test("season dates check off only after the local race day and never invent resu
   // Nice carries a recorded result, so it shows the rank rather than a date status.
   const nice = page.locator('.season-race[data-date="2026-09-12"]');
   await expect(nice).toHaveClass(/is-past/);
-  await expect(nice.locator(".race-state")).toHaveText("22. Rang");
+  await expect(nice.locator(".race-state")).toHaveText("23. Rang");
   // Cascais has no result yet: the date alone must never produce one.
   const cascais = page.locator('.season-race[data-date="2026-10-17"]');
   await expect(cascais.locator(".race-state")).toHaveText("Geplant");
@@ -221,8 +243,8 @@ test("season dates check off only after the local race day and never invent resu
   await expect(
     page.locator('.season-race[data-date="2026-08-30"] .race-state'),
   ).toHaveText("5th place");
-  // Ranks past 20 keep a correct suffix: 22nd, not 22th.
-  await expect(nice.locator(".race-state")).toHaveText("22nd place");
+  // Ranks past 20 keep a correct suffix: 23rd, not 23th.
+  await expect(nice.locator(".race-state")).toHaveText("23rd place");
   const australia = page.locator('.season-race[data-date="2026-12-06"]');
   await page.clock.setSystemTime(new Date("2026-12-06T15:59:00Z"));
   await page.reload();

@@ -25,7 +25,7 @@
     storyP2:
       "The sport has stayed with me ever since. My path gradually led from short-course racing to longer distances. I wasn’t right at the front in my U23 years. But I kept going, kept learning and got better over the years. After several Swiss U20 and U23 championship titles, I also won the elite Swiss sprint triathlon title in 2023 and raced at the highest level of short-course triathlon, the World Triathlon Championship Series (WTCS).",
     storyP3:
-      "Alongside professional sport, I work 50% as a business analyst. After studying at ETH Zurich, I still value that different perspective. When there’s time: cooking, documentaries and podcasts.",
+      "Alongside professional sport, I work 50% as a business analyst. After my master’s in Health Sciences and Technology at ETH Zurich, I still value that different perspective. When there’s time: cooking, documentaries and podcasts.",
     portraitAlt: "Leana smiling in a green sports shirt in the evening sun",
     sinceLabel: "In triathlon since",
     homeLabel: "At home in",
@@ -42,6 +42,10 @@
     seasonHeading: "My 2026 season.",
     seasonLegend: "✓ Past dates",
     niceRace: "Ironman 70.3 World Championship · Nice",
+    niceResult: "Ironman 70.3 Nice",
+    worldChampionship: "World Championship",
+    longDebut: "Long-distance debut",
+    firstProWin: "First international pro win",
     goalEyebrow: "Looking ahead · 2027",
     goalHeading: "The goal: Kona.",
     goalText:
@@ -67,10 +71,19 @@
     contactEyebrow: "Partnerships, press & conversations",
     contactHeading: "Let’s stay in touch.",
     writeMe: "Get in touch",
+    pressBioLabel: "Short bio for media",
+    pressBio:
+      "Leana Bissig is a Swiss professional triathlete from Winterthur. She holds a master’s degree in Health Sciences and Technology from ETH Zurich and works 50% as a business analyst alongside her sport. Her path led from short-course racing to the World Triathlon Championship Series and, via the T100 World Tour, to long-distance racing. In 2026 she finished fourth at Ironman Switzerland, her first Ironman. Her goal for 2027 is to qualify for the Ironman World Championship in Kona.",
+    copyBio: "Copy text",
+    copiedBio: "Copied",
+    // Subjects mark emails sent from the website so enquiries can be counted.
+    mailSubjectContact: "Contact · leanabissig.ch",
+    mailSubjectPartnership: "Partnerships & press · leanabissig.ch",
   };
   const textNodes = [...document.querySelectorAll("[data-i18n]")];
   const altNodes = [...document.querySelectorAll("[data-i18n-alt]")];
   const ariaNodes = [...document.querySelectorAll("[data-i18n-aria]")];
+  const subjectNodes = [...document.querySelectorAll("[data-i18n-subject]")];
   const german = {};
   textNodes.forEach((node) => {
     german[node.dataset.i18n] = [...node.childNodes]
@@ -86,13 +99,22 @@
   ariaNodes.forEach((node) => {
     german[node.dataset.i18nAria] = node.getAttribute("aria-label");
   });
+  subjectNodes.forEach((node) => {
+    german[node.dataset.i18nSubject] = new URL(node.href).searchParams.get(
+      "subject",
+    );
+  });
+  const titles = {
+    de: document.title,
+    en: "Leana Bissig · Swiss Professional Triathlete",
+  };
   const descriptions = {
     de: document.querySelector('meta[name="description"]').content,
     en: "Leana Bissig – Swiss professional triathlete from Winterthur. My story, race highlights and the partners by my side.",
   };
   const ogDescriptions = {
     de: document.querySelector('meta[property="og:description"]').content,
-    en: "Swim. Bike. Run. My story, my goals and my journey in middle- and long-distance triathlon.",
+    en: "Swim. Bike. Run. My path from short-course to long-distance racing, my results and my goal: Kona.",
   };
   const tabs = [...document.querySelectorAll("[data-tab]")];
   const panels = [...document.querySelectorAll(".panel")];
@@ -195,6 +217,10 @@
     ariaNodes.forEach((node) => {
       node.setAttribute("aria-label", dictionary[node.dataset.i18nAria]);
     });
+    subjectNodes.forEach((node) => {
+      const address = node.href.split("?")[0];
+      node.href = `${address}?subject=${encodeURIComponent(dictionary[node.dataset.i18nSubject])}`;
+    });
     document.querySelectorAll(".place").forEach((place) => {
       const rank = place.dataset.rank;
       place.querySelector(".place-ordinal").textContent =
@@ -209,6 +235,9 @@
           String(button.dataset.language === language),
         ),
       );
+    document.title = titles[language];
+    document.querySelector('meta[property="og:title"]').content =
+      titles[language];
     document.querySelector('meta[name="description"]').content =
       descriptions[language];
     document.querySelector('meta[property="og:description"]').content =
@@ -345,5 +374,23 @@
     .querySelector("#next-photo")
     .addEventListener("click", () => changePhoto(1));
   document.querySelector(".photo-controls").hidden = false;
+  // Clipboard needs a secure context; without it the bio stays selectable text.
+  const copyBio = document.querySelector(".copy-bio");
+  if (navigator.clipboard) {
+    copyBio.hidden = false;
+    copyBio.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(
+          document.querySelector("#press-bio-text").textContent.trim(),
+        );
+      } catch {
+        return;
+      }
+      copyBio.textContent = language === "en" ? english.copiedBio : "Kopiert";
+      setTimeout(() => {
+        copyBio.textContent = (language === "en" ? english : german).copyBio;
+      }, 2000);
+    });
+  }
   document.querySelector("#year").textContent = new Date().getFullYear();
 })();
