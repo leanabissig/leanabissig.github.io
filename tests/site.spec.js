@@ -45,6 +45,8 @@ test("language switches text and accessibility labels without losing the active 
   await expect(page.locator("#highlights")).toBeVisible();
   await expect(page.locator(".goal h3")).toHaveText("The goal: Kona.");
   await expect(page.locator(".place").last()).toHaveText("1st place");
+  // Ranks past 20 keep a correct suffix in the showcase too: 22nd, not 22th.
+  await expect(page.locator('.place[data-rank="22"]')).toHaveText("22nd place");
   await expect(
     page.getByRole("button", { name: "Next photo", exact: true }),
   ).toBeVisible();
@@ -65,6 +67,7 @@ test("language switches text and accessibility labels without losing the active 
   );
   await expect(page.locator(".goal h3")).toHaveText("Das Ziel: Kona.");
   await expect(page.locator(".place").last()).toHaveText("1. Rang");
+  await expect(page.locator('.place[data-rank="22"]')).toHaveText("22. Rang");
 });
 
 test("photos load, wrap in both directions and contact links have real destinations", async ({
@@ -168,39 +171,44 @@ test("legacy section links redirect; blog and gallery are removed", async ({
 test("season dates check off only after the local race day and never invent results", async ({
   page,
 }) => {
-  await page.clock.install({ time: new Date("2026-09-07T12:00:00Z") });
+  await page.clock.install({ time: new Date("2026-10-04T12:00:00Z") });
   await page.goto("/?tab=highlights&lang=de");
-  await expect(page.locator(".season-race.is-past")).toHaveCount(5);
+  await expect(page.locator(".season-race.is-past")).toHaveCount(6);
   const seasonDates = () =>
     page
       .locator(".season-race")
       .evaluateAll((rows) => rows.map((row) => row.dataset.date));
   expect(await seasonDates()).toEqual([
-    "2026-09-12",
     "2026-10-17",
     "2026-12-06",
+    "2026-09-12",
     "2026-08-30",
     "2026-07-26",
     "2026-07-05",
     "2026-06-21",
     "2026-04-19",
   ]);
+  // Nice carries a recorded result, so it shows the rank rather than a date status.
   const nice = page.locator('.season-race[data-date="2026-09-12"]');
-  await expect(nice.locator(".race-state")).toHaveText("Geplant");
-  await page.clock.setSystemTime(new Date("2026-09-12T10:00:00Z"));
-  await page.reload();
-  await expect(nice).toHaveClass(/is-today/);
-  await expect(nice).not.toHaveClass(/is-past/);
-  await expect(nice.locator(".race-state")).toHaveText("Heute");
-  await page.clock.setSystemTime(new Date("2026-09-12T21:59:30Z"));
-  await page.reload();
-  await expect(nice).not.toHaveClass(/is-past/);
-  await page.clock.runFor(61000);
   await expect(nice).toHaveClass(/is-past/);
-  await expect(nice.locator(".race-state")).toHaveText("Vergangen");
+  await expect(nice.locator(".race-state")).toHaveText("22. Rang");
+  // Cascais has no result yet: the date alone must never produce one.
+  const cascais = page.locator('.season-race[data-date="2026-10-17"]');
+  await expect(cascais.locator(".race-state")).toHaveText("Geplant");
+  await page.clock.setSystemTime(new Date("2026-10-17T10:00:00Z"));
+  await page.reload();
+  await expect(cascais).toHaveClass(/is-today/);
+  await expect(cascais).not.toHaveClass(/is-past/);
+  await expect(cascais.locator(".race-state")).toHaveText("Heute");
+  await page.clock.setSystemTime(new Date("2026-10-17T22:59:30Z"));
+  await page.reload();
+  await expect(cascais).not.toHaveClass(/is-past/);
+  await page.clock.runFor(61000);
+  await expect(cascais).toHaveClass(/is-past/);
+  await expect(cascais.locator(".race-state")).toHaveText("Vergangen");
   expect(await seasonDates()).toEqual([
-    "2026-10-17",
     "2026-12-06",
+    "2026-10-17",
     "2026-09-12",
     "2026-08-30",
     "2026-07-26",
@@ -209,10 +217,12 @@ test("season dates check off only after the local race day and never invent resu
     "2026-04-19",
   ]);
   await page.getByRole("button", { name: "English", exact: true }).click();
-  await expect(nice.locator(".race-state")).toHaveText("Past date");
+  await expect(cascais.locator(".race-state")).toHaveText("Past date");
   await expect(
     page.locator('.season-race[data-date="2026-08-30"] .race-state'),
   ).toHaveText("5th place");
+  // Ranks past 20 keep a correct suffix: 22nd, not 22th.
+  await expect(nice.locator(".race-state")).toHaveText("22nd place");
   const australia = page.locator('.season-race[data-date="2026-12-06"]');
   await page.clock.setSystemTime(new Date("2026-12-06T15:59:00Z"));
   await page.reload();

@@ -105,6 +105,13 @@
   let activeTab = "story";
   const seasonRaces = [...document.querySelectorAll(".season-race")];
   const raceDateFormatters = new Map();
+  // 1st, 2nd, 3rd, 4th … 11th/12th/13th stay "th", so 22 becomes "22nd", not "22th".
+  function englishOrdinal(value) {
+    const number = Number(value);
+    const lastTwo = number % 100;
+    if (lastTwo >= 11 && lastTwo <= 13) return "th";
+    return { 1: "st", 2: "nd", 3: "rd" }[number % 10] || "th";
+  }
   function updateSeason(now = new Date()) {
     const labels =
       language === "en"
@@ -139,7 +146,7 @@
       if (rank)
         state =
           language === "en"
-            ? `${rank}${{ 1: "st", 2: "nd", 3: "rd" }[rank] || "th"} place`
+            ? `${rank}${englishOrdinal(rank)} place`
             : `${rank}. Rang`;
       race.querySelector(".race-state").textContent = state;
     });
@@ -191,7 +198,7 @@
     document.querySelectorAll(".place").forEach((place) => {
       const rank = place.dataset.rank;
       place.querySelector(".place-ordinal").textContent =
-        language === "en" ? { 1: "st", 2: "nd", 3: "rd" }[rank] || "th" : ".";
+        language === "en" ? englishOrdinal(rank) : ".";
     });
     document.documentElement.lang = language;
     document
