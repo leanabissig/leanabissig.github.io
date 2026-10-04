@@ -1516,20 +1516,6 @@ footer a {
   }
 }
 
-/* Show the Pro Series shield from the official combined sponsor artwork. */
-.pro-series-mark {
-  display: block;
-  width: 48px;
-  height: 48px;
-  overflow: hidden;
-}
-.pro-series-mark .race-logo {
-  width: 118px;
-  max-width: none;
-  height: 48px;
-  object-fit: fill;
-}
-
 /* Keep the ordinal attached to its number at every viewport width. */
 .place-number {
   display: inline-block;

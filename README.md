@@ -72,7 +72,7 @@ Unter Highlights & Goals stehen sechs gelaufene Rennen aus 2026 — inklusive de
 Quellen, zuletzt geprüft am 04.10.2026:
 
 - Bisherige Rennen 2026 und Cascais-Podium vom 19.10.2024 (3. Rang, 4:16:28): [PTO](https://stats.protriathletes.org/athlete/leana-bissig).
-- Nizza, Frauenrennen am 12.09.2026, 22. Rang in 4:39:40: [PTO-Profil](https://stats.protriathletes.org/athlete/leana-bissig) und [offizielle Rennresultate](https://stats.protriathletes.org/race/im-703-world-championship/2026/results); Termin zuvor bestätigt über [IRONMAN Pro Series](https://www.ironman.com/proseries).
+- Nizza, Frauenrennen am 12.09.2026, 22. Rang in 4:39:40: [PTO-Profil](https://stats.protriathletes.org/athlete/leana-bissig) und [offizielle Rennresultate](https://stats.protriathletes.org/race/im-703-world-championship/2026/results); Termin und Rennlogo über die [offizielle WM-Seite](https://www.ironman.com/im703-world-championship).
 - Cascais 70.3 am 17.10.2026: [Veranstalter-Registrierung](https://regprt.ironman.com/event/2026-ironman-703-portugal-cascais).
 - Ironman Western Australia am 06.12.2026: [offizieller Veranstaltungsplan](https://www.ironman.com/races/im-western-australia/schedule).
 
