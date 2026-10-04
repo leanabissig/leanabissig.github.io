@@ -26,7 +26,7 @@ Alle Mail-Links tragen eine Betreffzeile: «Kontakt · leanabissig.ch» (Kontakt
 
 Strukturierte Daten (schema.org `Person`, JSON-LD im `<head>`) verweisen auf Instagram, LinkedIn und PTO und nennen Team, Wohnort, ETH und den MSc in Health Sciences and Technology. Bei Team- oder Profiländerungen mitpflegen.
 
-Resultate, deren Rang allein zu wenig Kontext gibt, erhalten ein `.result-tag`: «Weltmeisterschaft» (Nizza, 23. Rang), «Langdistanz-Debüt» (Ironman Switzerland; im PTO-Profil kein früherer Langdistanzstart, von Leana zu bestätigen), «T100 World Tour» (Wollongong, 100 km · 3:38:09 laut PTO) und «Erster internationaler Profisieg» (Apfelland; Leanas eigene Einordnung, Sieg im PTO-Profil). Höchstens drei bis vier Labels, damit sie auffallen.
+Resultate, deren Rang allein zu wenig Kontext gibt, erhalten ein `.result-tag`: «Weltmeisterschaft» (Nizza, 23. Rang), «Langdistanz-Debüt» (Ironman Switzerland; im PTO-Profil kein früherer Langdistanzstart, von Leana zu bestätigen), «T100 World Tour» (Wollongong, 100 km) und «Erster internationaler Profisieg» (Apfelland; Leanas eigene Einordnung, Sieg im PTO-Profil). Höchstens drei bis vier Labels, damit sie auffallen. Die Resultatliste zeigt Rang, Rennen und Distanz, aber keine Zielzeiten (Entscheid vom 04.10.2026); Zeiten stehen im PTO-Profil.
 
 Unter dem Kontaktbereich steht ein aufklappbares «Kurzporträt für Medien» in der dritten Person (DE/EN). «Text kopieren» erscheint nur mit JavaScript und Zwischenablage-Zugriff (HTTPS oder localhost); sonst bleibt der Text markierbar. Bei neuen Resultaten oder Zielen mitpflegen.
 

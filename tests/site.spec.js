@@ -79,6 +79,8 @@ test("language switches text and accessibility labels without losing the active 
   await expect(page.locator(".goal h3")).toHaveText("Das Ziel: Kona.");
   await expect(page.locator(".place").last()).toHaveText("1. Rang");
   await expect(page.locator('.place[data-rank="23"]')).toHaveText("23. Rang");
+  // Results show rank, race and distance only; finish times live on PTO.
+  await expect(page.locator(".results")).not.toContainText(/\d:\d{2}:\d{2}/);
 });
 
 test("photos load, wrap in both directions and contact links have real destinations", async ({
