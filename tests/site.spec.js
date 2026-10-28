@@ -85,6 +85,17 @@ test("language switches text and accessibility labels without losing the active 
   const zell = page.locator(".result", { hasText: "Zell am See" });
   await expect(zell.locator("p")).toHaveText("Mitteldistanz · Ironman Pro Series");
   await expect(zell.locator(".result-tag")).toHaveCount(0);
+  // Both Cascais podiums share a single row, so the race is listed once.
+  const cascais = page.locator(".result", { hasText: "Cascais" });
+  await expect(cascais).toHaveCount(1);
+  await expect(cascais.locator(".place")).toHaveText("3. Rang");
+  await expect(cascais.locator(".result-dates time")).toHaveText([
+    "17.10.2026",
+    "19.10.2024",
+  ]);
+  await expect(cascais.locator("p")).toHaveText(
+    "Mitteldistanz · zweimal auf dem Podest",
+  );
 });
 
 test("photos load, wrap in both directions and contact links have real destinations", async ({
@@ -199,76 +210,55 @@ test("legacy section links redirect; blog and gallery are removed", async ({
 test("season dates check off only after the local race day and never invent results", async ({
   page,
 }) => {
-  await page.clock.install({ time: new Date("2026-10-04T12:00:00Z") });
+  await page.clock.install({ time: new Date("2026-10-28T12:00:00Z") });
   await page.goto("/?tab=highlights&lang=de");
-  await expect(page.locator(".season-race.is-past")).toHaveCount(6);
+  await expect(page.locator(".season-race.is-past")).toHaveCount(7);
   const seasonDates = () =>
     page
       .locator(".season-race")
       .evaluateAll((rows) => rows.map((row) => row.dataset.date));
-  expect(await seasonDates()).toEqual([
-    "2026-10-17",
+  const pastOrder = [
     "2026-12-06",
+    "2026-10-17",
     "2026-09-12",
     "2026-08-30",
     "2026-07-26",
     "2026-07-05",
     "2026-06-21",
     "2026-04-19",
-  ]);
-  // Nice carries a recorded result, so it shows the rank rather than a date status.
+  ];
+  expect(await seasonDates()).toEqual(pastOrder);
+  // Nice and Cascais carry recorded results, so they show the rank rather than a date status.
   const nice = page.locator('.season-race[data-date="2026-09-12"]');
   await expect(nice).toHaveClass(/is-past/);
   await expect(nice.locator(".race-state")).toHaveText("23. Rang");
-  // Cascais has no result yet: the date alone must never produce one.
   const cascais = page.locator('.season-race[data-date="2026-10-17"]');
-  await expect(cascais.locator(".race-state")).toHaveText("Geplant");
-  await page.clock.setSystemTime(new Date("2026-10-17T10:00:00Z"));
-  await page.reload();
-  await expect(cascais).toHaveClass(/is-today/);
-  await expect(cascais).not.toHaveClass(/is-past/);
-  await expect(cascais.locator(".race-state")).toHaveText("Heute");
-  await page.clock.setSystemTime(new Date("2026-10-17T22:59:30Z"));
-  await page.reload();
-  await expect(cascais).not.toHaveClass(/is-past/);
-  await page.clock.runFor(61000);
   await expect(cascais).toHaveClass(/is-past/);
-  await expect(cascais.locator(".race-state")).toHaveText("Vergangen");
-  expect(await seasonDates()).toEqual([
-    "2026-12-06",
-    "2026-10-17",
-    "2026-09-12",
-    "2026-08-30",
-    "2026-07-26",
-    "2026-07-05",
-    "2026-06-21",
-    "2026-04-19",
-  ]);
+  await expect(cascais.locator(".race-state")).toHaveText("3. Rang");
+  // Western Australia has no result yet: the date alone must never produce one.
+  const australia = page.locator('.season-race[data-date="2026-12-06"]');
+  await expect(australia).not.toHaveClass(/is-past/);
+  await expect(australia.locator(".race-state")).toHaveText("Geplant");
+  await page.clock.setSystemTime(new Date("2026-12-06T02:00:00Z"));
+  await page.reload();
+  await expect(australia).toHaveClass(/is-today/);
+  await expect(australia).not.toHaveClass(/is-past/);
+  await expect(australia.locator(".race-state")).toHaveText("Heute");
+  await page.clock.setSystemTime(new Date("2026-12-06T15:59:30Z"));
+  await page.reload();
+  await expect(australia).not.toHaveClass(/is-past/);
+  await page.clock.runFor(61000);
+  await expect(australia).toHaveClass(/is-past/);
+  await expect(australia.locator(".race-state")).toHaveText("Vergangen");
+  expect(await seasonDates()).toEqual(pastOrder);
   await page.getByRole("button", { name: "English", exact: true }).click();
-  await expect(cascais.locator(".race-state")).toHaveText("Past date");
+  await expect(australia.locator(".race-state")).toHaveText("Past date");
   await expect(
     page.locator('.season-race[data-date="2026-08-30"] .race-state'),
   ).toHaveText("5th place");
+  await expect(cascais.locator(".race-state")).toHaveText("3rd place");
   // Ranks past 20 keep a correct suffix: 23rd, not 23th.
   await expect(nice.locator(".race-state")).toHaveText("23rd place");
-  const australia = page.locator('.season-race[data-date="2026-12-06"]');
-  await page.clock.setSystemTime(new Date("2026-12-06T15:59:00Z"));
-  await page.reload();
-  await expect(australia.locator(".race-state")).toHaveText("Today");
-  await page.clock.setSystemTime(new Date("2026-12-06T16:00:00Z"));
-  await page.reload();
-  await expect(australia).toHaveClass(/is-past/);
-  await expect(australia.locator(".race-state")).toHaveText("Past date");
-  expect(await seasonDates()).toEqual([
-    "2026-12-06",
-    "2026-10-17",
-    "2026-09-12",
-    "2026-08-30",
-    "2026-07-26",
-    "2026-07-05",
-    "2026-06-21",
-    "2026-04-19",
-  ]);
 });
 
 test("touch swipes change photos while vertical gestures scroll the page", async ({

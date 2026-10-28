@@ -56,8 +56,8 @@
       }
     </script>
     <link rel="icon" type="image/svg+xml" href="/assets/onepager/favicon.svg" />
-    <link rel="stylesheet" href="/assets/onepager/site.css?v=20261004-pro-series" />
-    <script src="/assets/onepager/site.js?v=20261004-pro-series" defer></script>
+    <link rel="stylesheet" href="/assets/onepager/site.css?v=20261028-cascais" />
+    <script src="/assets/onepager/site.js?v=20261028-cascais" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#content" data-i18n="skip">Zum Inhalt</a>
@@ -429,6 +429,40 @@
               aria-label="Ausgewählte Resultate"
               data-i18n-aria="selectedResults"
             >
+              <!-- Both Cascais podiums share one row: same race, same rank, two years. -->
+              <div class="result">
+                <span class="place" data-rank="3"
+                  ><span class="place-number"
+                    >3<span class="place-ordinal">.</span></span
+                  >
+                  <span class="place-label" data-i18n="placeLabel"
+                    >Rang</span
+                  ></span
+                >
+                <div>
+                  <h3>Ironman 70.3 Cascais</h3>
+                  <p>
+                    <span data-i18n="middleDistance">Mitteldistanz</span> ·
+                    <span data-i18n="twicePodium"
+                      >zweimal auf dem Podest</span
+                    >
+                  </p>
+                </div>
+                <span class="result-badge" title="IRONMAN 70.3">
+                  <img
+                    class="race-logo race-logo-ironman"
+                    src="/assets/onepager/races/ironman-703-cascais.png"
+                    alt="IRONMAN 70.3"
+                    width="112"
+                    height="48"
+                    loading="lazy"
+                  />
+                </span>
+                <span class="result-dates"
+                  ><time datetime="2026-10-17">17.10.2026</time
+                  ><time datetime="2024-10-19">19.10.2024</time></span
+                >
+              </div>
               <div class="result">
                 <span class="place" data-rank="23"
                   ><span class="place-number"
@@ -571,33 +605,6 @@
                 <time datetime="2025-10-18">18.10.2025</time>
               </div>
               <div class="result">
-                <span class="place" data-rank="3"
-                  ><span class="place-number"
-                    >3<span class="place-ordinal">.</span></span
-                  >
-                  <span class="place-label" data-i18n="placeLabel"
-                    >Rang</span
-                  ></span
-                >
-                <div>
-                  <h3>Ironman 70.3 Cascais</h3>
-                  <p>
-                    <span data-i18n="middleDistance">Mitteldistanz</span>
-                  </p>
-                </div>
-                <span class="result-badge" title="IRONMAN 70.3">
-                  <img
-                    class="race-logo race-logo-ironman"
-                    src="/assets/onepager/races/ironman-703-cascais.png"
-                    alt="IRONMAN 70.3"
-                    width="112"
-                    height="48"
-                    loading="lazy"
-                  />
-                </span>
-                <time datetime="2024-10-19">19.10.2024</time>
-              </div>
-              <div class="result">
                 <span class="place" data-rank="1"
                   ><span class="place-number"
                     >1<span class="place-ordinal">.</span></span
@@ -645,21 +652,6 @@
               <ol class="season-list">
                 <li
                   class="season-race"
-                  data-date="2026-10-17"
-                  data-timezone="Europe/Lisbon"
-                >
-                  <span class="race-check" aria-hidden="true">○</span
-                  ><time datetime="2026-10-17">17.10.2026</time
-                  ><a
-                    class="race-name"
-                    href="https://www.ironman.com/races/im703-cascais/register"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Ironman 70.3 Cascais</a
-                  ><span class="race-state">Geplant</span>
-                </li>
-                <li
-                  class="season-race"
                   data-date="2026-12-06"
                   data-timezone="Australia/Perth"
                 >
@@ -672,6 +664,22 @@
                     rel="noopener noreferrer"
                     >Ironman Western Australia</a
                   ><span class="race-state">Geplant</span>
+                </li>
+                <li
+                  class="season-race is-past"
+                  data-date="2026-10-17"
+                  data-timezone="Europe/Lisbon"
+                  data-result="3"
+                >
+                  <span class="race-check" aria-hidden="true">✓</span
+                  ><time datetime="2026-10-17">17.10.2026</time
+                  ><a
+                    class="race-name"
+                    href="https://stats.protriathletes.org/athlete/leana-bissig"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Ironman 70.3 Cascais</a
+                  ><span class="race-state">3. Rang</span>
                 </li>
                 <li
                   class="season-race is-past"
@@ -1107,7 +1115,8 @@
             Business Analyst. Ihr Weg führte sie von der Kurzdistanz bis in die
             World Triathlon Championship Series und über die T100 World Tour zur
             Langdistanz. 2026 wurde sie bei ihrem ersten Ironman Vierte am
-            Ironman Switzerland. Für 2027 strebt sie die Qualifikation für die
+            Ironman Switzerland und stand am Ironman 70.3 Cascais als Dritte auf
+            dem Podest. Für 2027 strebt sie die Qualifikation für die
             Ironman-WM in Kona an.
           </p>
           <button type="button" class="copy-bio" data-i18n="copyBio" hidden>

@@ -459,6 +459,12 @@ h3 {
   font-variant-numeric: tabular-nums;
   color: var(--muted);
 }
+/* A result repeated in several years keeps one row; its dates stack in the date cell. */
+.result-dates {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+}
 .goal {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -858,7 +864,7 @@ footer a {
     gap: 0 12px;
     padding: 16px 0;
   }
-  .result time {
+  .result > time {
     grid-column: 2;
     text-align: left;
     margin-top: 3px;
@@ -1561,11 +1567,18 @@ footer a {
     max-width: 88px;
     height: 42px;
   }
-  .result time {
+  .result > time,
+  .result-dates {
     grid-column: 2;
     grid-row: 2;
     text-align: left;
     margin-top: 0;
+  }
+  .result-dates {
+    grid-auto-flow: column;
+    justify-content: start;
+    justify-items: start;
+    gap: 0 12px;
   }
 }
 @media (max-width: 480px) {

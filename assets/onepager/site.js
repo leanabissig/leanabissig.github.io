@@ -38,6 +38,7 @@
     placeLabel: "place",
     middleDistance: "Middle distance",
     longDistance: "Long distance",
+    twicePodium: "on the podium twice",
     seasonEyebrow: "Looking ahead",
     seasonHeading: "My 2026 season.",
     seasonLegend: "✓ Past dates",
@@ -73,7 +74,7 @@
     writeMe: "Get in touch",
     pressBioLabel: "Short bio for media",
     pressBio:
-      "Leana Bissig is a Swiss professional triathlete from Winterthur. She holds a master’s degree in Health Sciences and Technology from ETH Zurich and works 50% as a business analyst alongside her sport. Her path led from short-course racing to the World Triathlon Championship Series and, via the T100 World Tour, to long-distance racing. In 2026 she finished fourth at Ironman Switzerland, her first Ironman. Her goal for 2027 is to qualify for the Ironman World Championship in Kona.",
+      "Leana Bissig is a Swiss professional triathlete from Winterthur. She holds a master’s degree in Health Sciences and Technology from ETH Zurich and works 50% as a business analyst alongside her sport. Her path led from short-course racing to the World Triathlon Championship Series and, via the T100 World Tour, to long-distance racing. In 2026 she finished fourth at Ironman Switzerland, her first Ironman, and took third place at Ironman 70.3 Cascais. Her goal for 2027 is to qualify for the Ironman World Championship in Kona.",
     copyBio: "Copy text",
     copiedBio: "Copied",
     // Subjects mark emails sent from the website so enquiries can be counted.
