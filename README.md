@@ -38,8 +38,17 @@ Unter dem Kontaktbereich steht ein aufklappbares «Kurzporträt für Medien» in
 | Karussell 2 | `bike-action-*.webp` | `Fotoshooting_Leana Mai-19.JPG` |
 | Karussell 3 | `after-race-*.webp` | `77fa350a-20a3-4ba6-832f-f4a7f7e9d105.JPG` |
 | My Story | `story-portrait.webp` | `DSC04684.JPG` |
+| Coin Nizza 2026 | `coin-nice-2026-front.webp`, `coin-nice-2026-back.webp` | `coin-nice-2026-front.jpg`, `coin-nice-2026-back.jpg` |
+| Patch T100 Katar 2025 | `patch-t100-qatar-2025.webp` | `patch-t100-qatar-2025.jpg` |
+| Coin Chattanooga 2027 | `coin-chattanooga-2027-front.webp`, `coin-chattanooga-2027-back.webp` | `coin-chattanooga-2027-front.jpg`, `coin-chattanooga-2027-back.jpg` |
 
 Die Originale bleiben unverändert in der Inbox. Webkopien sind verkleinert und ohne EXIF-Metadaten gespeichert. Die Fotos werden ohne Farbfilter oder abdunkelnde Überlagerung dargestellt. Name und Bild liegen auf getrennten Flächen. Kreuz und Ortsangabe wurden aus dem Karussell entfernt. Fotocredits sind noch nicht angegeben.
+
+## WM-Coins und Patch
+
+Unter der Saisonliste steht «Meine Weltmeisterschaften»: der Patch vom T100-WM-Finale Katar 2025 (12.12.2025, 22. Rang laut [PTO](https://stats.protriathletes.org/athlete/leana-bissig), geprüft 30.10.2026) sowie Leanas Qualifikations-Coins der 70.3-WM Nizza 2026 und Chattanooga 2027, chronologisch von links. Tippen, Klicken, Enter oder Leertaste drehen einen Coin eineinhalb Umdrehungen auf die andere Seite; `aria-pressed` zeigt an, ob die Rückseite oben liegt. Der Patch hat nur eine Vorderseite: Er dreht sich eine ganze Umdrehung und zeigt dabei kurz eine gedämpfte Spiegelung wie die Rückseite eines gewobenen Abzeichens; er hat kein `aria-pressed`. Mit Maus kippen Coins und Patch beim Überfahren leicht als Hinweis. Bei «Bewegung reduzieren» wechselt die Seite ohne Animation. Ohne JavaScript bleibt die Vorderseite sichtbar und der Hinweis «Zum Drehen antippen» ausgeblendet.
+
+Die Bilder sind eigene Fotos der Coins vom 30.10.2026 (Originale in der Inbox), keine Bilder aus dem Netz. Sie sind rund freigestellt, am Papierhintergrund weissabgeglichen (ohne Aufhellen; Lichter weich zurückgenommen, damit Metall nicht ausfrisst) und um 90° aufgerichtet. Lampenreflexe auf der Emaille sind retuschiert: In von Hand festgelegten Emaille-Bereichen erhalten helle, blasse Pixel die Farbe der umliegenden Emaille zurück; Gold- und Messingschrift, Relief und die weissen Schirmstreifen auf der Nizza-Rückseite bleiben unverändert. Gespeichert sind sie als 400 × 400 px WebP mit Transparenz und ohne Metadaten. Der Patch ist über seine rosa Farbe freigestellt (Umriss mit Stickrand erhalten), am Papier weissabgeglichen und als 238 × 400 px WebP gespeichert; dieselbe Datei dient in `site.css` als Maske für die Schattierung. Für einen weiteren Coin genügt eine weitere `figure.coin-item` mit Vorder- und Rückseite; das `aria-label` wird in `site.js` übersetzt.
 
 ## Logos
 

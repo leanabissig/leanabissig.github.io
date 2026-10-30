@@ -181,7 +181,45 @@ test("all content and contact remain available without JavaScript", async ({
     "Master in Health Sciences and Technology",
   );
   await expect(page.locator(".copy-bio")).toBeHidden();
+  // Coins still show their front; the tap hint only appears when tapping works.
+  await expect(page.locator(".coin")).toHaveCount(3);
+  await expect(page.locator(".coins-hint")).toBeHidden();
   await context.close();
+});
+
+test("qualification coins flip between front and back on tap and keyboard", async ({
+  page,
+}) => {
+  await page.goto("/?tab=highlights&lang=de");
+  await expect(page.locator(".coins-hint")).toHaveText("Zum Drehen antippen");
+  const nice = page.getByRole("button", {
+    name: "Coin Nizza 2026 drehen",
+    exact: true,
+  });
+  await expect(nice).toHaveAttribute("aria-pressed", "false");
+  await nice.click();
+  await expect(nice).toHaveAttribute("aria-pressed", "true");
+  await nice.press("Enter");
+  await expect(nice).toHaveAttribute("aria-pressed", "false");
+  // Each tap is one and a half turns, so two taps land on the front again.
+  await expect(nice).toHaveAttribute("style", /--coin-turn:\s*1080deg/);
+  await page.getByRole("button", { name: "English", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Flip the Nice 2026 coin", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".coins-hint")).toHaveText("Tap a coin to flip it");
+  await expect(page.locator('[data-i18n="coinNiceCaption"]')).toHaveText(
+    "70.3Nice 2026",
+  );
+  // The patch has one face: a tap is a full turn and there is no flipped state.
+  const patch = page.getByRole("button", {
+    name: "Spin the T100 Qatar 2025 patch",
+    exact: true,
+  });
+  await patch.click();
+  await expect(patch).toHaveAttribute("style", /--coin-turn:\s*360deg/);
+  await expect(patch).not.toHaveAttribute("aria-pressed");
+  await expect(patch.locator(".coin-edge")).toHaveCount(0);
 });
 
 test("legacy section links redirect; blog and gallery are removed", async ({

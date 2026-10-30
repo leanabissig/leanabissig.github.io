@@ -465,6 +465,167 @@ h3 {
   justify-items: end;
   gap: 2px;
 }
+/* Qualification coins: two photo faces with stacked metal discs between them.
+   --coin-turn is a registered angle, so it animates and the glint can follow it. */
+@property --coin-turn {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+@property --coin-tilt {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+.coins {
+  --coin-size: 132px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 42px;
+}
+.coins-hint {
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.coin-row {
+  display: flex;
+  gap: 28px;
+}
+.coin-item {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 8px;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--muted);
+}
+.coin {
+  --coin-depth: 10px;
+  --coin-angle: calc(var(--coin-turn) + var(--coin-tilt));
+  width: var(--coin-size);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  perspective: 600px;
+  transition:
+    --coin-turn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    --coin-tilt 0.3s ease;
+}
+.coin-gold {
+  --coin-metal: linear-gradient(#dcb65a, #a8862f 45%, #6e5419);
+}
+.coin-brass {
+  --coin-metal: linear-gradient(#cbc28a, #948a50 45%, #575029);
+}
+.coin-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(var(--coin-angle));
+  transform-style: preserve-3d;
+}
+@media (hover: hover) {
+  .coin:hover {
+    --coin-tilt: 20deg;
+  }
+}
+.coin-face,
+.coin-edge {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+.coin-face {
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(calc(var(--coin-depth) / 2));
+}
+.coin-back {
+  transform: rotateY(180deg) translateZ(calc(var(--coin-depth) / 2));
+}
+.coin-face img {
+  width: 100%;
+  height: 100%;
+}
+.coin-face::after,
+.coin-sheen {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.coin-face::after {
+  background: #000;
+}
+.coin-sheen {
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgb(255 255 255 / 0.75) 50%,
+    transparent 70%
+  );
+}
+/* Shade grows as the face turns away; the glint crosses the face and peaks at 45°.
+   Both are zero when the coin lies flat. Without trig support they stay transparent. */
+@supports (opacity: calc(sin(90deg))) {
+  .coin-face::after {
+    opacity: calc(sin(var(--coin-angle)) * sin(var(--coin-angle)) * 0.3);
+  }
+  .coin-sheen {
+    opacity: calc(
+      sin(var(--coin-angle) * 2) * sin(var(--coin-angle) * 2) * 0.8
+    );
+    transform: translateX(calc(cos(var(--coin-angle) * 2) * 50%));
+  }
+}
+.coin-edge {
+  inset: 0.5%;
+  background: var(--coin-metal);
+  transform: translateZ(calc((var(--layer) - 8) * var(--coin-depth) / 18));
+}
+/* The woven patch has one face: it spins a full turn and, halfway round, shows
+   the muted mirror image a real woven badge has on its back. */
+.coin-patch {
+  --coin-depth: 0px;
+  width: auto;
+  height: var(--coin-size);
+  aspect-ratio: 238 / 400;
+  border-radius: 4px;
+}
+.coin-patch .coin-face {
+  border-radius: 0;
+  overflow: visible;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-mask: url("/assets/onepager/images/patch-t100-qatar-2025.webp") center /
+    100% 100%;
+  mask: url("/assets/onepager/images/patch-t100-qatar-2025.webp") center / 100%
+    100%;
+}
+.coin-patch .coin-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #f1e9e9;
+  opacity: 0;
+}
+@supports (opacity: calc(cos(90deg))) {
+  .coin-patch .coin-face::before {
+    opacity: calc(max(0, cos(var(--coin-angle)) * -0.55));
+  }
+}
 .goal {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -1382,6 +1543,23 @@ footer a {
   .season-legend {
     display: block;
     margin-top: 9px;
+  }
+  .coins {
+    --coin-size: clamp(72px, 22vw, 104px);
+    display: block;
+  }
+  /* Three equal columns so captions wrap instead of pushing past 320px. */
+  .coin-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .coin {
+    --coin-depth: 8px;
+  }
+  .coin-patch {
+    --coin-depth: 0px;
   }
   .season-race {
     grid-template-columns: 18px 1fr auto;
