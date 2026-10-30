@@ -40,9 +40,10 @@
     longDistance: "Long distance",
     twicePodium: "on the podium twice",
     seasonEyebrow: "Looking ahead",
-    seasonHeading: "My 2026 season.",
+    seasonHeading: "My 2026/27 season.",
     seasonLegend: "✓ Past dates",
     niceRace: "Ironman 70.3 World Championship · Nice",
+    chattanoogaRace: "Ironman 70.3 World Championship · Chattanooga",
     niceResult: "Ironman 70.3 Nice",
     worldChampionship: "World Championship",
     longDebut: "Long-distance debut",
@@ -74,7 +75,7 @@
     writeMe: "Get in touch",
     pressBioLabel: "Short bio for media",
     pressBio:
-      "Leana Bissig is a Swiss professional triathlete from Winterthur. She holds a master’s degree in Health Sciences and Technology from ETH Zurich and works 50% as a business analyst alongside her sport. Her path led from short-course racing to the World Triathlon Championship Series and, via the T100 World Tour, to long-distance racing. In 2026 she finished fourth at Ironman Switzerland, her first Ironman, and took third place at Ironman 70.3 Cascais. Her goal for 2027 is to qualify for the Ironman World Championship in Kona.",
+      "Leana Bissig is a Swiss professional triathlete from Winterthur. She holds a master’s degree in Health Sciences and Technology from ETH Zurich and works 50% as a business analyst alongside her sport. Her path led from short-course racing to the World Triathlon Championship Series and, via the T100 World Tour, to long-distance racing. In 2026 she finished fourth at Ironman Switzerland, her first Ironman, and took third place at Ironman 70.3 Cascais, where she qualified for the 2027 Ironman 70.3 World Championship in Chattanooga, USA. Her next big goal is to qualify for the Ironman World Championship in Kona.",
     copyBio: "Copy text",
     copiedBio: "Copied",
     // Subjects mark emails sent from the website so enquiries can be counted.

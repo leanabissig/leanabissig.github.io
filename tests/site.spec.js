@@ -219,6 +219,7 @@ test("season dates check off only after the local race day and never invent resu
       .evaluateAll((rows) => rows.map((row) => row.dataset.date));
   const pastOrder = [
     "2026-12-06",
+    "2027-08-28",
     "2026-10-17",
     "2026-09-12",
     "2026-08-30",
@@ -239,6 +240,12 @@ test("season dates check off only after the local race day and never invent resu
   const australia = page.locator('.season-race[data-date="2026-12-06"]');
   await expect(australia).not.toHaveClass(/is-past/);
   await expect(australia.locator(".race-state")).toHaveText("Geplant");
+  // The 2027 World Championship sits in the same list as the next upcoming race after 2026.
+  const chattanooga = page.locator('.season-race[data-date="2027-08-28"]');
+  await expect(chattanooga.locator(".race-name")).toHaveText(
+    "Ironman 70.3 WM · Chattanooga",
+  );
+  await expect(chattanooga.locator(".race-state")).toHaveText("Geplant");
   await page.clock.setSystemTime(new Date("2026-12-06T02:00:00Z"));
   await page.reload();
   await expect(australia).toHaveClass(/is-today/);
@@ -250,9 +257,15 @@ test("season dates check off only after the local race day and never invent resu
   await page.clock.runFor(61000);
   await expect(australia).toHaveClass(/is-past/);
   await expect(australia.locator(".race-state")).toHaveText("Vergangen");
-  expect(await seasonDates()).toEqual(pastOrder);
+  // Once Western Australia is done, Chattanooga leads as the next race.
+  expect(await seasonDates()).toEqual([
+    "2027-08-28",
+    "2026-12-06",
+    ...pastOrder.slice(2),
+  ]);
   await page.getByRole("button", { name: "English", exact: true }).click();
   await expect(australia.locator(".race-state")).toHaveText("Past date");
+  await expect(chattanooga.locator(".race-state")).toHaveText("Planned");
   await expect(
     page.locator('.season-race[data-date="2026-08-30"] .race-state'),
   ).toHaveText("5th place");
