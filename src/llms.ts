@@ -1,6 +1,7 @@
 // llms.txt and llms-full.txt: the page's facts as Markdown for language models,
 // built from the same data and texts as the pages so they never drift apart.
 import { championships } from "./data/championships";
+import { partnership } from "./data/partnership";
 import { partnerGroups, team, type PartnerGroup } from "./data/partners";
 import { profile } from "./data/profile";
 import { results } from "./data/results";
@@ -126,6 +127,9 @@ export function llmsTxt(now = new Date()): string {
     `- ${link("Instagram", profile.instagram)}`,
     `- ${link("LinkedIn", profile.linkedin)}`,
     `- ${link("PTO athlete profile with all results", profile.pto)}`,
+    ...(partnership.draft
+      ? []
+      : [`- ${link("Partnership deck (PDF)", new URL(partnership.file("en"), profile.site).href)}`]),
     "",
   ].join("\n");
 }

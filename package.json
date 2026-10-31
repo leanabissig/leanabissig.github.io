@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/deck-pdf.mjs",
     "check": "astro check",
-    "preview": "astro build && python3 -m http.server 8000 --directory dist",
-    "test": "astro build && playwright test"
+    "preview": "npm run build && python3 -m http.server 8000 --directory dist",
+    "test": "npm run build && playwright test"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
     "@astrojs/check": "0.9.12",
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
+    "@types/node": "22.20.5",
+    "sharp": "0.35.5",
     "typescript": "6.0.3"
   }
 }

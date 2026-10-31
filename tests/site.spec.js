@@ -363,6 +363,43 @@ test("llms.txt and llms-full.txt carry the page's races, results and bios", asyn
   }
 });
 
+test("partnership deck: both PDFs are built, the pages fit, a draft stays unlinked", async ({
+  page,
+  request,
+}) => {
+  for (const lang of ["de", "en"]) {
+    const pdf = await request.get(`/deck/leana-bissig-partnership-${lang}.pdf`);
+    expect(pdf.ok()).toBe(true);
+    const bytes = await pdf.body();
+    expect(bytes.subarray(0, 5).toString()).toBe("%PDF-");
+    // Two A4 pages; photos go in as JPEG, so the file stays small enough to email.
+    expect(bytes.toString("latin1").match(/\/Type\s*\/Page(?![s\w])/g)).toHaveLength(2);
+    expect(bytes.length).toBeLessThan(3_000_000);
+    await page.goto(`/deck/${lang}/`);
+    await expect(page.locator("html")).toHaveAttribute("lang", lang);
+    await expect(page.locator(".deck-page")).toHaveCount(2);
+    await expect(page.locator(".results tr")).toHaveCount(
+      await page.evaluate(async () => (await fetch("/").then((r) => r.text())).match(/class="result"/g).length),
+    );
+    // Nothing may run past the edge of a page once more results come in.
+    const overflow = await page.locator(".deck-page").evaluateAll((pages) =>
+      pages.flatMap((deckPage) => {
+        const box = deckPage.getBoundingClientRect();
+        return [...deckPage.querySelectorAll("*")]
+          .filter((el) => {
+            const r = el.getBoundingClientRect();
+            return r.width && (r.bottom > box.bottom + 0.5 || r.right > box.right + 0.5);
+          })
+          .map((el) => `${el.tagName}.${el.className}`);
+      }),
+    );
+    expect(overflow).toEqual([]);
+    const draft = (await page.locator(".draft-stamp").count()) > 0;
+    await page.goto(lang === "en" ? "/en/" : "/");
+    await expect(page.locator(".deck-link")).toHaveCount(draft ? 0 : 1);
+  }
+});
+
 test("legacy section links redirect; blog and gallery are removed", async ({
   page,
   request,

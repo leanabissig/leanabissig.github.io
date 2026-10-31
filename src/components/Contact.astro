@@ -1,7 +1,8 @@
 ---
 import ArrowIcon from "./ArrowIcon.astro";
+import { partnership } from "../data/partnership";
 import { profile } from "../data/profile";
-import { texts, type Lang } from "../i18n";
+import { local, texts, type Lang } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -15,6 +16,14 @@ const mail = (subject: string) => `mailto:${profile.email}?subject=${encodeURICo
   <div>
     <p class="eyebrow">{t.contactEyebrow}</p>
     <h2 id="contact-heading">{t.contactHeading}</h2>
+    {
+      // The deck is linked only once Leana has approved it.
+      !partnership.draft && (
+        <a class="text-link deck-link" href={partnership.file(lang)}>
+          <span>{local(partnership.labels.deckLink, lang)}</span> <span aria-hidden="true"><ArrowIcon /></span>
+        </a>
+      )
+    }
   </div>
   <a class="contact-button" href={mail(t.mailSubjectPartnership)}
     ><span>{t.writeMe}</span><span aria-hidden="true"><ArrowIcon /></span></a

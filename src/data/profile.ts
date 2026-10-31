@@ -19,6 +19,11 @@ export const profile = {
   country: { de: "Schweiz", en: "Switzerland" } as Localized,
   university: { de: "ETH Zürich", en: "ETH Zurich" } as Localized,
   degree: "MSc ETH in Health Sciences and Technology",
+  // Titles from the story, shown in the partnership deck.
+  titles: [
+    { de: "Schweizer Meisterin Elite im Sprinttriathlon 2023", en: "Swiss elite champion in sprint triathlon, 2023" },
+    { de: "Mehrere Schweizer Meistertitel U20 und U23", en: "Several Swiss U20 and U23 titles" },
+  ] as Localized[],
   // Highlights for search engines and agents (schema.org "award").
   awards: [
     {

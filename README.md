@@ -44,6 +44,14 @@ Unter dem Kontaktbereich steht ein aufklappbares «Kurzporträt für Medien» in
 
 `llms.txt` fasst die Seite für Sprachmodelle und KI-Agenten als Markdown auf Englisch zusammen: Profil, ausgewählte Resultate, Weltmeisterschaften, Saison mit Status, Ziel Kona, Partner, das Kurzporträt (EN und DE, wörtlich) und Kontakt. `llms-full.txt` enthält den ganzen Seitentext auf Englisch und Deutsch. Beide entstehen in `src/llms.ts` aus denselben Daten und Texten wie die Seiten; der Saisonstatus gilt am Tag des Builds, der täglich neu läuft. Die Seiten verlinken beide Dateien mit `rel="describedby"`, `robots.txt` nennt sie. Alle KI-Crawler sind über `User-agent: *` zugelassen; GitHub Pages sperrt keine Crawler, eine Einzelaufzählung wie bei Hostern mit Sperrliste ist deshalb nicht nötig.
 
+## Partnerschafts-Deck (PDF)
+
+Zwei Seiten A4 quer für Firmen und Sponsoren, auf Deutsch und Englisch: `/deck/leana-bissig-partnership-de.pdf` und `-en.pdf`. Seite 1 «Profil & Erfolge»: Foto, Kurzprofil, «Was mich antreibt», ausgewählte Resultate, Titel, Partner-Logos. Seite 2 «Ziele & Partnerschaft»: Ziel Kona, Fahrplan mit den kommenden Rennen der Saisonliste, WM-Coins, Partnerschaftsangebot, Kontakt.
+
+Die Vorlage ist `src/pages/deck/[lang].astro` mit `src/styles/deck.css`; als Webseite unter `/deck/de/` und `/deck/en/` (nicht indexiert). Nach `astro build` druckt `scripts/deck-pdf.mjs` beide Seiten mit Chromium zu PDF, Teil von `npm run build`, also auch in GitHub Actions. Resultate, Titel, Saison, Coins, Partner und Kontakt kommen aus denselben Daten wie die Website und sind im Deck automatisch aktuell. Nur Werte («Was mich antreibt»), die Einordnung der kommenden Rennen und das Angebot stehen in `src/data/partnership.ts`. Fotos und Coins gehen als JPEG ins PDF (`src/pages/deck/img/[name].jpg.ts` erzeugt sie beim Build aus den WebP-Dateien); so bleibt jedes PDF bei rund 1 MB statt 7 MB.
+
+Solange in `partnership.ts` `draft: true` steht, trägt jede Seite den Stempel «Entwurf – von Leana zu bestätigen», die vorgeschlagenen Abschnitte sind gestrichelt markiert, und Website und `llms.txt` verlinken das Deck nicht. Nach Leanas Freigabe `draft: false` setzen: Die Markierungen verschwinden, und im Kontaktbereich erscheint «Partnerschafts-Deck (PDF)». Ein Test prüft, dass beide PDFs zwei Seiten haben, unter 3 MB bleiben, nichts über den Seitenrand läuft und ein Entwurf nicht verlinkt ist.
+
 ## Bilder
 
 | Verwendung | Webdatei | Von Leana gewählte Quelle |

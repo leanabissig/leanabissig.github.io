@@ -714,6 +714,10 @@ h3 {
   letter-spacing: -0.8px;
   margin-top: 10px;
 }
+.deck-link {
+  display: inline-flex;
+  margin-top: 10px;
+}
 .contact-button {
   display: flex;
   gap: 24px;

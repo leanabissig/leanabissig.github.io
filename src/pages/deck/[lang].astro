@@ -1,0 +1,197 @@
+---
+// The partnership deck: two A4 landscape pages, printed to PDF after the build
+// (scripts/deck-pdf.mjs). Everything except values and offer comes from the
+// same data as the website.
+import "../../styles/deck.css";
+import { championships } from "../../data/championships";
+import { partnership } from "../../data/partnership";
+import { partnerGroups, team } from "../../data/partners";
+import { profile } from "../../data/profile";
+import { results } from "../../data/results";
+import { seasonRaces } from "../../data/season";
+import { languages, local, texts, type Lang } from "../../i18n";
+import { displayDate } from "../../scripts/dates";
+import { placeText } from "../../scripts/places";
+import { raceStatus } from "../../scripts/season";
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const t = texts[lang];
+const l = (value: Parameters<typeof local>[0]) => local(value, lang);
+const label = partnership.labels;
+const draft = partnership.draft;
+const now = new Date();
+const upcoming = seasonRaces
+  .filter((race) => raceStatus(race.date, race.timeZone, now) !== "past")
+  .sort((a, b) => a.date.localeCompare(b.date));
+const kona = t.goalEyebrow.match(/\d{4}/)?.[0];
+const logos = [
+  { name: team.name, src: team.logoGray, width: 213, height: 277 },
+  ...partnerGroups.flatMap((group) =>
+    group.partners.map((p) => ({ name: p.name, src: p.logo.src, width: p.logo.width, height: p.logo.height })),
+  ),
+];
+const site = new URL(profile.site).host;
+// JPEG copies from ./img/[name].jpg.ts keep the PDFs small.
+const print = (src: string) => `/deck/img/${src.split("/").pop()!.replace(/(-1200)?\.webp$/, "")}.jpg`;
+const instagramHandle = new URL(profile.instagram).pathname.replaceAll("/", "");
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>{l(partnership.title)}</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/onepager/favicon.svg" />
+  </head>
+  <body class:list={{ "is-draft": draft }}>
+    <section class="deck-page profile-page">
+      <img
+        class="deck-photo"
+        src={print("/assets/onepager/images/bike-portrait-1200.webp")}
+        alt={t.photoBikePortrait}
+      />
+      <div class="deck-body">
+        <header class="deck-header">
+          <p class="eyebrow">{t.heroEyebrow} · {l(label.profileTitle)}</p>
+          <h1>{profile.name}<span>.</span></h1>
+          <p class="subtitle">{l(label.subtitle)}</p>
+          <p class="lead">{t.introText}</p>
+        </header>
+        <div class="columns">
+          <section class:list={{ proposal: draft }}>
+            <h2 class="eyebrow">
+              {t.driveLabel}
+              {draft && <span class="draft-tag">{l(label.draft)}</span>}
+            </h2>
+            <dl class="values">
+              {
+                partnership.values.map((value) => (
+                  <>
+                    <dt>{l(value.title)}</dt>
+                    <dd>{l(value.text)}</dd>
+                  </>
+                ))
+              }
+            </dl>
+          </section>
+          <section>
+            <h2 class="eyebrow">{t.selectedResults}</h2>
+            <table class="results">
+              {
+                results.map((result) => (
+                  <tr>
+                    <th>{placeText(result.rank, lang)}</th>
+                    <td>
+                      <span class="race">{l(result.race)}</span> {result.tag && <span class="tag">{l(result.tag)}</span>}
+                    </td>
+                    <td class="year">{result.dates.map((date) => date.slice(0, 4)).join(" · ")}</td>
+                  </tr>
+                ))
+              }
+            </table>
+            <h2 class="eyebrow titles-heading">{l(label.titles)}</h2>
+            <ul class="titles">
+              {profile.titles.map((title) => <li>{l(title)}</li>)}
+            </ul>
+          </section>
+        </div>
+        <section class="logos">
+          <h2 class="eyebrow">{l(label.partners)}</h2>
+          <div class="logo-row">
+            {logos.map((logo) => <img src={logo.src} alt={logo.name} width={logo.width} height={logo.height} />)}
+          </div>
+        </section>
+      </div>
+      {draft && <p class="draft-stamp">{l(label.draftStamp)}</p>}
+    </section>
+
+    <section class="deck-page goals-page">
+      <div class="deck-body">
+        <header class="deck-header">
+          <p class="eyebrow">{profile.name} · {l(label.goalsTitle)}</p>
+          <h1>{t.goalHeading.replace(/\.$/, "")}<span>.</span></h1>
+          <p class="lead">{t.goalText}</p>
+        </header>
+        <div class="columns three">
+          <div>
+            <section class:list={{ proposal: draft }}>
+              <h2 class="eyebrow">
+                {l(label.roadmap)}
+                {draft && <span class="draft-tag">{l(label.draft)}</span>}
+              </h2>
+              <ol class="roadmap">
+                {
+                  upcoming.map((race) => (
+                    <li>
+                      <time datetime={race.date}>{displayDate(race.date)}</time>
+                      <strong>{l(race.race)}</strong>
+                      {partnership.roadmap[race.date] && <span>{l(partnership.roadmap[race.date]!)}</span>}
+                    </li>
+                  ))
+                }
+                <li class="goal">
+                  <time>{kona}</time>
+                  <strong>{t.goalHeading}</strong>
+                </li>
+              </ol>
+            </section>
+            <section class="championships">
+              <h2 class="eyebrow">{t.coinsEyebrow}</h2>
+              <div class="coin-row">
+                {
+                  championships.map((item) => (
+                    <figure>
+                      <img src={print(item.front)} alt="" />
+                      <figcaption>
+                        {l(item.caption[0])}
+                        <br />
+                        {l(item.caption[1])}
+                      </figcaption>
+                    </figure>
+                  ))
+                }
+              </div>
+            </section>
+          </div>
+          <section class:list={["offer", { proposal: draft }]}>
+            <h2 class="eyebrow">
+              {l(label.offer)}
+              {draft && <span class="draft-tag">{l(label.draft)}</span>}
+            </h2>
+            <p class="intro">{l(partnership.intro)}</p>
+            {
+              partnership.offers.map((offer) => (
+                <>
+                  <h3>{l(offer.title)}</h3>
+                  <ul>
+                    {offer.items.map((item) => (
+                      <li>{l(item)}</li>
+                    ))}
+                  </ul>
+                </>
+              ))
+            }
+          </section>
+          <aside class="contact">
+            <img src={print("/assets/onepager/images/after-race-1200.webp")} alt={t.photoAfterRace} />
+            <div class="contact-card">
+              <p class:list={["closing", { proposal: draft }]}>{l(partnership.closing)}</p>
+              <h2 class="eyebrow">{l(label.contact)}</h2>
+              <ul>
+                <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+                <li><a href={profile.site}>{site}</a></li>
+                <li><a href={profile.instagram}>Instagram @{instagramHandle}</a></li>
+                <li><a href={profile.linkedin}>LinkedIn</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+      {draft && <p class="draft-stamp">{l(label.draftStamp)}</p>}
+    </section>
+  </body>
+</html>

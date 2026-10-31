@@ -1,0 +1,361 @@
+/* Partnership deck: two A4 landscape pages in the website's colours and type.
+   On screen the pages sit on a grey desk; in print (PDF) they fill the sheet. */
+@font-face {
+  font-family: Manrope;
+  src: url("/assets/onepager/fonts/manrope-variable.ttf") format("truetype");
+  font-weight: 200 800;
+}
+@page {
+  size: 297mm 210mm;
+  margin: 0;
+}
+:root {
+  --paper: #f7f7f2;
+  --ink: #233b32;
+  --muted: #56635a;
+  --line: #dcded5;
+  --accent: #dae6bd;
+  --olive: #7c9257;
+  --panel: #e8eddf;
+  --draft: #9b2c2c;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #c9ccc3;
+  color: var(--ink);
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 8.6pt;
+  line-height: 1.45;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  display: block;
+}
+.deck-page {
+  position: relative;
+  width: 297mm;
+  height: 210mm;
+  margin: 10mm auto;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 2mm 8mm rgb(0 0 0 / 0.15);
+  break-after: page;
+}
+@media print {
+  body {
+    background: none;
+  }
+  .deck-page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+.eyebrow {
+  margin-bottom: 2.4mm;
+  font-size: 6.8pt;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.deck-header h1 {
+  font-size: 44pt;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+.deck-header h1 span {
+  color: var(--olive);
+}
+.subtitle {
+  margin-top: 2.5mm;
+  font-weight: 700;
+}
+.lead {
+  max-width: 150mm;
+  margin-top: 2.5mm;
+  color: var(--muted);
+  font-size: 9.6pt;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9mm;
+}
+
+/* Page 1: profile and achievements */
+.profile-page {
+  display: grid;
+  grid-template-columns: 88mm 1fr;
+}
+.deck-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+.profile-page .deck-body {
+  display: flex;
+  flex-direction: column;
+  gap: 7mm;
+  padding: 13mm 14mm 11mm 12mm;
+}
+.titles-heading {
+  margin-top: 5mm;
+}
+.titles li {
+  position: relative;
+  padding-left: 4mm;
+  font-size: 9.2pt;
+  font-weight: 600;
+}
+.titles li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.6mm;
+  width: 1.8mm;
+  height: 1.8mm;
+  border-radius: 0.3mm;
+  background: var(--olive);
+}
+.results {
+  width: 100%;
+  border-collapse: collapse;
+}
+.results th,
+.results td {
+  padding: 1.7mm 0;
+  font-size: 9.2pt;
+  border-bottom: 0.25mm solid var(--line);
+  text-align: left;
+  vertical-align: baseline;
+}
+.results th {
+  width: 21mm;
+  white-space: nowrap;
+}
+.results .race {
+  white-space: nowrap;
+}
+.results .year {
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+}
+.tag {
+  display: inline-block;
+  padding: 0.25mm 1.4mm;
+  border-radius: 0.5mm;
+  background: var(--accent);
+  font-size: 5.8pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.coin-row {
+  display: flex;
+  gap: 6mm;
+}
+.coin-row figure {
+  display: grid;
+  justify-items: center;
+  gap: 1.5mm;
+  color: var(--muted);
+  font-size: 7pt;
+  line-height: 1.35;
+  text-align: center;
+}
+.coin-row img {
+  width: auto;
+  height: 22mm;
+}
+.logos {
+  margin-top: auto;
+}
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5mm;
+}
+/* Grey like on the website; multiply drops the white boxes some logos have. */
+.logo-row img {
+  width: auto;
+  max-width: 22mm;
+  height: auto;
+  max-height: 9mm;
+  object-fit: contain;
+  filter: grayscale(1);
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+}
+
+/* Page 2: goals and partnership offer */
+.goals-page .deck-body {
+  display: flex;
+  flex-direction: column;
+  gap: 7mm;
+  height: 100%;
+  padding: 13mm 14mm 12mm;
+}
+.goals-page .deck-header h1 {
+  font-size: 32pt;
+}
+.columns.three {
+  flex: 1;
+  grid-template-columns: 72mm 1fr 74mm;
+  gap: 9mm;
+  min-height: 0;
+}
+.columns.three > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7mm;
+}
+.roadmap {
+  border-left: 0.6mm solid var(--accent);
+}
+.roadmap li {
+  position: relative;
+  display: grid;
+  padding: 0 0 4mm 4.5mm;
+  font-size: 9.2pt;
+}
+.roadmap li::before {
+  content: "";
+  position: absolute;
+  left: -1.55mm;
+  top: 1.2mm;
+  width: 2.5mm;
+  height: 2.5mm;
+  border-radius: 50%;
+  background: var(--olive);
+}
+.roadmap time {
+  color: var(--olive);
+  font-weight: 700;
+}
+.roadmap span {
+  color: var(--muted);
+}
+.roadmap .goal strong {
+  font-size: 11pt;
+}
+.values dt {
+  font-weight: 700;
+}
+.values dt {
+  font-size: 10pt;
+}
+.values dd {
+  margin-bottom: 4mm;
+  color: var(--muted);
+  font-size: 9.4pt;
+}
+.offer .intro {
+  margin-bottom: 3mm;
+  font-size: 9.6pt;
+}
+.offer h3 {
+  margin-top: 3mm;
+  font-size: 9pt;
+}
+.offer li {
+  position: relative;
+  margin-top: 1mm;
+  padding-left: 3.5mm;
+  color: var(--muted);
+}
+.offer li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.75mm;
+  width: 1.5mm;
+  height: 1.5mm;
+  border-radius: 50%;
+  background: var(--olive);
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+  min-height: 0;
+}
+.contact img {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: 1.5mm;
+}
+.contact-card {
+  padding: 5mm;
+  border-radius: 1.5mm;
+  background: var(--panel);
+}
+.closing {
+  margin-bottom: 3.5mm;
+  font-size: 10.5pt;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.contact-card li {
+  font-weight: 600;
+}
+
+/* Draft marks: removed by setting `draft: false` in src/data/partnership.ts. */
+.draft-stamp {
+  position: absolute;
+  top: 5mm;
+  right: 6mm;
+  padding: 0.8mm 2.5mm;
+  border: 0.35mm solid var(--draft);
+  border-radius: 0.6mm;
+  background: var(--paper);
+  color: var(--draft);
+  font-size: 6.8pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.draft-tag {
+  margin-left: 2mm;
+  padding: 0.2mm 1.4mm;
+  border-radius: 0.5mm;
+  background: #f4dedb;
+  color: var(--draft);
+  letter-spacing: 0.06em;
+}
+.proposal {
+  outline: 0.3mm dashed #cf8b84;
+  outline-offset: 1.6mm;
+  border-radius: 0.5mm;
+}
