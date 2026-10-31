@@ -594,37 +594,25 @@ h3 {
   background: var(--coin-metal);
   transform: translateZ(calc((var(--layer) - 8) * var(--coin-depth) / 18));
 }
-/* The woven patch has one face: it spins a full turn and, halfway round, shows
-   the muted mirror image a real woven badge has on its back. */
+/* The woven patch flips like a coin onto its velcro back, but has no edge.
+   Each face is masked by its own photo so the shade follows the patch outline. */
 .coin-patch {
   --coin-depth: 0px;
   width: auto;
   height: var(--coin-size);
-  aspect-ratio: 238 / 400;
+  aspect-ratio: 237 / 400;
   border-radius: 4px;
 }
 .coin-patch .coin-face {
   border-radius: 0;
-  overflow: visible;
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  -webkit-mask: url("/assets/onepager/images/patch-t100-qatar-2025.webp") center /
+  -webkit-mask: url("/assets/onepager/images/patch-t100-qatar-2025-front.webp")
+    center / 100% 100%;
+  mask: url("/assets/onepager/images/patch-t100-qatar-2025-front.webp") center /
     100% 100%;
-  mask: url("/assets/onepager/images/patch-t100-qatar-2025.webp") center / 100%
-    100%;
 }
-.coin-patch .coin-face::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: #f1e9e9;
-  opacity: 0;
-}
-@supports (opacity: calc(cos(90deg))) {
-  .coin-patch .coin-face::before {
-    opacity: calc(max(0, cos(var(--coin-angle)) * -0.55));
-  }
+.coin-patch .coin-back {
+  -webkit-mask-image: url("/assets/onepager/images/patch-t100-qatar-2025-back.webp");
+  mask-image: url("/assets/onepager/images/patch-t100-qatar-2025-back.webp");
 }
 .goal {
   display: grid;

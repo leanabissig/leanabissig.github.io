@@ -211,14 +211,18 @@ test("qualification coins flip between front and back on tap and keyboard", asyn
   await expect(page.locator('[data-i18n="coinNiceCaption"]')).toHaveText(
     "70.3Nice 2026",
   );
-  // The patch has one face: a tap is a full turn and there is no flipped state.
+  // The patch flips onto its velcro back like a coin, but has no metal edge.
   const patch = page.getByRole("button", {
-    name: "Spin the T100 Qatar 2025 patch",
+    name: "Flip the T100 Qatar 2025 patch",
     exact: true,
   });
   await patch.click();
-  await expect(patch).toHaveAttribute("style", /--coin-turn:\s*360deg/);
-  await expect(patch).not.toHaveAttribute("aria-pressed");
+  await expect(patch).toHaveAttribute("style", /--coin-turn:\s*540deg/);
+  await expect(patch).toHaveAttribute("aria-pressed", "true");
+  await expect(patch.locator(".coin-back img")).toHaveAttribute(
+    "src",
+    /patch-t100-qatar-2025-back\.webp$/,
+  );
   await expect(patch.locator(".coin-edge")).toHaveCount(0);
 });
 

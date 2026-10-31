@@ -52,7 +52,7 @@
     coinsHint: "Tap a coin to flip it",
     coinNice: "Flip the Nice 2026 coin",
     coinNiceCaption: "70.3\nNice 2026",
-    patchQatar: "Spin the T100 Qatar 2025 patch",
+    patchQatar: "Flip the T100 Qatar 2025 patch",
     patchQatarCaption: "T100\nQatar 2025",
     coinChattanooga: "Flip the Chattanooga 2027 coin",
     goalEyebrow: "Looking ahead · 2027",
@@ -383,14 +383,14 @@
     .querySelector("#next-photo")
     .addEventListener("click", () => changePhoto(1));
   document.querySelector(".photo-controls").hidden = false;
-  // Each tap spins a coin one and a half turns, so it lands on its other face.
-  // The single-faced patch spins a full turn instead and has no flipped state.
+  // Each tap spins a coin or the patch one and a half turns, so it lands on its other face.
   document.querySelectorAll(".coin").forEach((coin) => {
-    const isPatch = coin.classList.contains("coin-patch");
-    // Thin metal discs stacked between the faces show the edge mid-spin.
+    // Thin metal discs stacked between the faces show a coin's edge mid-spin;
+    // the woven patch is too thin for one.
     // Only parallel layers: a plane across the faces makes Chrome split them.
+    const hasEdge = !coin.classList.contains("coin-patch");
     const inner = coin.querySelector(".coin-inner");
-    for (let layer = 0; !isPatch && layer <= 16; layer += 1) {
+    for (let layer = 0; hasEdge && layer <= 16; layer += 1) {
       const edge = document.createElement("span");
       edge.className = "coin-edge";
       edge.style.setProperty("--layer", layer);
@@ -399,8 +399,8 @@
     let turns = 0;
     coin.addEventListener("click", () => {
       turns += 1;
-      coin.style.setProperty("--coin-turn", `${turns * (isPatch ? 360 : 540)}deg`);
-      if (!isPatch) coin.setAttribute("aria-pressed", String(turns % 2 === 1));
+      coin.style.setProperty("--coin-turn", `${turns * 540}deg`);
+      coin.setAttribute("aria-pressed", String(turns % 2 === 1));
     });
   });
   document.querySelector(".coins-hint").hidden = false;
