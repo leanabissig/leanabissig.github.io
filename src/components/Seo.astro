@@ -1,0 +1,88 @@
+---
+import { languages, local, pagePath, texts, type Lang } from "../i18n";
+import { profile } from "../data/profile";
+import { partnerGroups, team } from "../data/partners";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+const pageUrl = (l: Lang) => new URL(pagePath(l), profile.site).href;
+const home = pageUrl("de");
+const portrait = new URL(profile.portrait, profile.site).href;
+const organisation = (name: string, url: string, type = "Organization") => ({ "@type": type, name, url });
+const groupPartners = (role: string) =>
+  partnerGroups.filter((group) => group.role === role).flatMap((group) => group.partners);
+
+const graph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${home}#person`,
+      name: profile.name,
+      url: home,
+      image: portrait,
+      description: local(profile.summary, lang),
+      jobTitle: local(profile.jobTitle, lang),
+      nationality: { "@type": "Country", name: local(profile.country, lang) },
+      homeLocation: { "@type": "Place", name: profile.home },
+      alumniOf: { "@type": "CollegeOrUniversity", name: local(profile.university, lang) },
+      hasCredential: {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "degree",
+        name: profile.degree,
+      },
+      memberOf: [
+        organisation(team.name, team.url, "SportsTeam"),
+        ...groupPartners("membership").map((p) => organisation(p.name, p.url, "SportsOrganization")),
+      ],
+      sponsor: groupPartners("sponsor").map((p) => organisation(p.name, p.url)),
+      award: profile.awards.map((award) => local(award, lang)),
+      email: `mailto:${profile.email}`,
+      sameAs: [profile.instagram, profile.linkedin, profile.pto],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${home}#website`,
+      url: home,
+      name: profile.name,
+      inLanguage: [...languages],
+      publisher: { "@id": `${home}#person` },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${pageUrl(lang)}#webpage`,
+      url: pageUrl(lang),
+      name: t.title,
+      description: t.description,
+      inLanguage: lang,
+      isPartOf: { "@id": `${home}#website` },
+      mainEntity: { "@id": `${home}#person` },
+    },
+  ],
+};
+// "<" never appears unescaped, so the JSON cannot close its script element.
+const jsonLd = JSON.stringify(graph).replace(/</g, "\\u003c");
+---
+
+<meta name="description" content={t.description} />
+<meta name="theme-color" content="#f7f7f2" />
+<link rel="canonical" href={pageUrl(lang)} />
+{languages.map((l) => <link rel="alternate" hreflang={l} href={pageUrl(l)} />)}
+<link rel="alternate" hreflang="x-default" href={home} />
+<!-- Plain-text summaries for language models, generated from the same data as this page. -->
+<link rel="describedby" type="text/markdown" href={`${home}llms.txt`} title="llms.txt" />
+<link rel="describedby" type="text/markdown" href={`${home}llms-full.txt`} title="llms-full.txt" />
+<meta property="og:type" content="profile" />
+<meta property="og:site_name" content={profile.name} />
+<meta property="og:locale" content={lang === "de" ? "de_CH" : "en_GB"} />
+<meta property="og:locale:alternate" content={lang === "de" ? "en_GB" : "de_CH"} />
+<meta property="og:title" content={t.title} />
+<meta property="og:description" content={t.ogDescription} />
+<meta property="og:url" content={pageUrl(lang)} />
+<meta property="og:image" content={portrait} />
+<meta property="og:image:alt" content={t.ogImageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json" set:html={jsonLd} />

@@ -1,0 +1,57 @@
+---
+import { seasonRaces } from "../data/season";
+import { local, texts, type Lang } from "../i18n";
+import { displayDate } from "../scripts/dates";
+import { placeText } from "../scripts/places";
+import { compareRaces, raceStatus } from "../scripts/season";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+// State as of the build; the browser updates it to the visitor's day.
+const now = new Date();
+const races = seasonRaces
+  .map((race) => ({ ...race, status: raceStatus(race.date, race.timeZone, now) }))
+  .map((race) => ({ ...race, past: race.status === "past" }))
+  .sort(compareRaces);
+const stateText = (race: (typeof races)[number]) =>
+  race.result
+    ? placeText(race.result, lang)
+    : { planned: t.seasonPlanned, today: t.seasonToday, past: t.seasonPast }[race.status];
+---
+
+<section class="season" aria-labelledby="season-heading">
+  <div class="season-heading">
+    <div>
+      <p class="eyebrow">{t.seasonEyebrow}</p>
+      <h3 id="season-heading">{t.seasonHeading}</h3>
+    </div>
+    <span class="season-legend">{t.seasonLegend}</span>
+  </div>
+  <ol
+    class="season-list"
+    data-planned={t.seasonPlanned}
+    data-today={t.seasonToday}
+    data-past={t.seasonPast}
+  >
+    {
+      races.map((race) => (
+        <li
+          class:list={["season-race", { "is-past": race.past, "is-today": race.status === "today" }]}
+          data-date={race.date}
+          data-timezone={race.timeZone}
+          data-result={race.result}
+        >
+          <span class="race-check" aria-hidden="true">{race.past ? "✓" : "○"}</span>
+          <time datetime={race.date}>{displayDate(race.date)}</time>
+          <a class="race-name" href={race.url} target="_blank" rel="noopener noreferrer">
+            {local(race.race, lang)}
+          </a>
+          <span class="race-state">{stateText(race)}</span>
+        </li>
+      ))
+    }
+  </ol>
+</section>

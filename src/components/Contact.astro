@@ -1,0 +1,27 @@
+---
+import ArrowIcon from "./ArrowIcon.astro";
+import { profile } from "../data/profile";
+import { texts, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+const mail = (subject: string) => `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
+---
+
+<section class="contact-section" aria-labelledby="contact-heading">
+  <div>
+    <p class="eyebrow">{t.contactEyebrow}</p>
+    <h2 id="contact-heading">{t.contactHeading}</h2>
+  </div>
+  <a class="contact-button" href={mail(t.mailSubjectPartnership)}
+    ><span>{t.writeMe}</span><span aria-hidden="true"><ArrowIcon /></span></a
+  >
+</section>
+<details class="press-bio">
+  <summary>{t.pressBioLabel}</summary>
+  <p id="press-bio-text">{t.pressBio}</p>
+  <button type="button" class="copy-bio" data-copied={t.copiedBio} hidden>{t.copyBio}</button>
+</details>

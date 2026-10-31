@@ -1,5 +1,5 @@
-const { test, expect } = require("@playwright/test");
-const AxeBuilder = require("@axe-core/playwright").default;
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
 test("tabs, keyboard, deep links and browser history preserve the selected section", async ({
   page,
@@ -27,12 +27,19 @@ test("tabs, keyboard, deep links and browser history preserve the selected secti
   await expect(page.locator("#story")).toBeVisible();
 });
 
-test("language switches text and accessibility labels without losing the active tab", async ({
-  page,
-}) => {
-  await page.goto("/?tab=highlights&lang=de");
-  await page.getByRole("button", { name: "English", exact: true }).click();
+test("language links open the other page on the same tab", async ({ page }) => {
+  await page.goto("/?tab=highlights");
+  await expect(page.getByRole("link", { name: "Deutsch", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  await page.getByRole("link", { name: "English", exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/\?tab=highlights$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("link", { name: "English", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
   await expect(
     page.getByRole("tab", { name: "My Story", exact: true }),
   ).toBeVisible();
@@ -63,7 +70,8 @@ test("language switches text and accessibility labels without losing the active 
   ).toBeVisible();
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await page.getByRole("button", { name: "Deutsch", exact: true }).click();
+  await page.getByRole("link", { name: "Deutsch", exact: true }).click();
+  await expect(page).toHaveURL(/:8017\/\?tab=highlights$/);
   await expect(
     page.getByRole("tab", { name: "Mein Weg", exact: true }),
   ).toBeVisible();
@@ -98,12 +106,36 @@ test("language switches text and accessibility labels without losing the active 
   );
 });
 
+test("old ?lang= links and a stored choice lead to the matching page", async ({
+  page,
+}) => {
+  await page.goto("/?lang=en&tab=support");
+  await expect(page).toHaveURL(/\/en\/\?tab=support$/);
+  await expect(page.locator("#support")).toBeVisible();
+  await page.goto("/en/?lang=de");
+  await expect(page).toHaveURL(/:8017\/$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "de");
+  // Choosing English is remembered for the home page …
+  await page.getByRole("link", { name: "English", exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/\?tab=story$/);
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/en\/$/);
+  // … but an explicit German link still wins, and choosing German sticks.
+  await page.goto("/?lang=de");
+  await expect(page.locator("html")).toHaveAttribute("lang", "de");
+  await page.getByRole("link", { name: "Deutsch", exact: true }).click();
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveAttribute("lang", "de");
+  await expect(page).toHaveURL(/:8017\/$/);
+});
+
 test("photos load, wrap in both directions and contact links have real destinations", async ({
   page,
 }) => {
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/?lang=en");
+  await expect(page).toHaveURL(/\/en\/$/);
   for (let i = 0; i < 4; i++) {
     const photo = page.locator('.hero-photo[aria-hidden="false"]');
     await expect(photo).toHaveCount(1);
@@ -169,7 +201,10 @@ test("all content and contact remain available without JavaScript", async ({
   await page.goto("http://127.0.0.1:8017/");
   for (const id of ["story", "highlights", "support"])
     await expect(page.locator(`#${id}`)).toBeVisible();
-  await expect(page.locator(".languages")).toBeHidden();
+  await expect(page.getByRole("link", { name: "English", exact: true })).toHaveAttribute(
+    "href",
+    "/en/",
+  );
   await expect(page.locator(".photo-controls")).toBeHidden();
   await expect(page.locator(".contact-button")).toHaveAttribute(
     "href",
@@ -184,7 +219,64 @@ test("all content and contact remain available without JavaScript", async ({
   // Coins still show their front; the tap hint only appears when tapping works.
   await expect(page.locator(".coin")).toHaveCount(3);
   await expect(page.locator(".coins-hint")).toBeHidden();
+  // The English page is complete without JavaScript too.
+  await page.goto("http://127.0.0.1:8017/en/");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page).toHaveTitle("Leana Bissig · Swiss Professional Triathlete");
+  await expect(page.locator("#story h2")).toHaveText("Step by step.Always myself.");
+  await expect(page.locator(".contact-button")).toHaveAttribute(
+    "href",
+    "mailto:contact@leanabissig.ch?subject=Partnerships%20%26%20press%20%C2%B7%20leanabissig.ch",
+  );
+  await expect(page.locator(".season-race").first().locator(".race-state")).not.toBeEmpty();
   await context.close();
+});
+
+test("both pages name each other for search engines and describe Leana in their language", async ({
+  page,
+  request,
+}) => {
+  for (const [path, lang, other] of [
+    ["/", "de", "en"],
+    ["/en/", "en", "de"],
+  ]) {
+    await page.goto(path);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      `https://leanabissig.ch${path}`,
+    );
+    await expect(page.locator(`link[rel="alternate"][hreflang="${other}"]`)).toHaveAttribute(
+      "href",
+      `https://leanabissig.ch${other === "en" ? "/en/" : "/"}`,
+    );
+    await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveAttribute(
+      "href",
+      "https://leanabissig.ch/",
+    );
+    const graph = JSON.parse(
+      await page.locator('script[type="application/ld+json"]').textContent(),
+    )["@graph"];
+    const person = graph.find((node) => node["@type"] === "Person");
+    const webPage = graph.find((node) => node["@type"] === "ProfilePage");
+    expect(person.name).toBe("Leana Bissig");
+    expect(person.jobTitle).toBe(lang === "en" ? "Professional triathlete" : "Profi-Triathletin");
+    expect(person.sponsor.map((s) => s.name)).toEqual(["Saucony", "Sensolar"]);
+    expect(person.memberOf.map((m) => m.name)).toEqual([
+      "Pro Team Hotel Jakob",
+      "Swiss Triathlon",
+      "TG Hütten",
+    ]);
+    expect(person.award.length).toBeGreaterThan(0);
+    expect(webPage.inLanguage).toBe(lang);
+    expect(webPage.mainEntity["@id"]).toBe(person["@id"]);
+  }
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  for (const url of ["https://leanabissig.ch/", "https://leanabissig.ch/en/"])
+    expect(sitemap).toContain(`<loc>${url}</loc>`);
+  expect(sitemap).toContain('hreflang="en" href="https://leanabissig.ch/en/"');
+  expect(await (await request.get("/robots.txt")).text()).toContain(
+    "https://leanabissig.ch/llms.txt",
+  );
 });
 
 test("qualification coins flip between front and back on tap and keyboard", async ({
@@ -203,14 +295,16 @@ test("qualification coins flip between front and back on tap and keyboard", asyn
   await expect(nice).toHaveAttribute("aria-pressed", "false");
   // Each tap is one and a half turns, so two taps land on the front again.
   await expect(nice).toHaveAttribute("style", /--coin-turn:\s*1080deg/);
-  await page.getByRole("button", { name: "English", exact: true }).click();
+  await page.getByRole("link", { name: "English", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Flip the Nice 2026 coin", exact: true }),
   ).toBeVisible();
   await expect(page.locator(".coins-hint")).toHaveText("Tap a coin to flip it");
-  await expect(page.locator('[data-i18n="coinNiceCaption"]')).toHaveText(
+  await expect(page.locator(".coin-item figcaption")).toHaveText([
+    "T100Qatar 2025",
     "70.3Nice 2026",
-  );
+    "70.3Chattanooga 2027",
+  ]);
   // The patch flips onto its velcro back like a coin, but has no metal edge.
   const patch = page.getByRole("button", {
     name: "Flip the T100 Qatar 2025 patch",
@@ -226,16 +320,16 @@ test("qualification coins flip between front and back on tap and keyboard", asyn
   await expect(patch.locator(".coin-edge")).toHaveCount(0);
 });
 
-test("llms.txt summary stays in line with the page", async ({ page }) => {
-  await page.goto("/?lang=de");
-  await expect(page.locator('link[rel="describedby"]')).toHaveAttribute(
+test("llms.txt and llms-full.txt carry the page's races, results and bios", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator('link[rel="describedby"]').first()).toHaveAttribute(
     "href",
     "https://leanabissig.ch/llms.txt",
   );
-  const response = await page.request.get("/llms.txt");
-  expect(response.ok()).toBe(true);
-  const summary = await response.text();
-  // Every season race is listed with its date and, once raced, its place.
+  const summary = await (await page.request.get("/llms.txt")).text();
+  const full = await (await page.request.get("/llms-full.txt")).text();
   const ordinal = (n) =>
     n % 100 >= 11 && n % 100 <= 13
       ? `${n}th`
@@ -250,20 +344,23 @@ test("llms.txt summary stays in line with the page", async ({ page }) => {
   for (const { date, result } of races) {
     const line = seasonLines.find((l) => l.startsWith(`- ${date} · `));
     expect(line, `llms.txt season line for ${date}`).toBeTruthy();
-    expect(line).toContain(result ? `· ${ordinal(Number(result))} place` : "· planned");
+    if (result) expect(line).toContain(`· ${ordinal(Number(result))} place`);
+    else expect(line).not.toContain(" place");
   }
   for (const date of await page
     .locator(".results time")
     .evaluateAll((times) => times.map((t) => t.dateTime)))
     expect(summary, `llms.txt result on ${date}`).toContain(date);
-  // Both short bios are quoted word for word.
-  const bio = () =>
-    page
-      .locator("#press-bio-text")
-      .evaluate((el) => el.textContent.replace(/\s+/g, " ").trim());
-  expect(summary).toContain(await bio());
-  await page.getByRole("button", { name: "English", exact: true }).click();
-  expect(summary).toContain(await bio());
+  // Both short bios word for word, and the full text of both pages.
+  for (const path of ["/", "/en/"]) {
+    await page.goto(path);
+    const text = (selector) =>
+      page.locator(selector).evaluateAll((els) => els.map((el) => el.textContent.trim()));
+    const [bio] = await text("#press-bio-text");
+    expect(summary).toContain(bio);
+    for (const paragraph of await text("#story .story-copy > p:not(.eyebrow), .goal > p, .support-intro"))
+      expect(full, path).toContain(paragraph);
+  }
 });
 
 test("legacy section links redirect; blog and gallery are removed", async ({
@@ -345,7 +442,8 @@ test("season dates check off only after the local race day and never invent resu
     "2026-12-06",
     ...pastOrder.slice(2),
   ]);
-  await page.getByRole("button", { name: "English", exact: true }).click();
+  await page.getByRole("link", { name: "English", exact: true }).click();
+  await expect(page).toHaveURL(/\/en\//);
   await expect(australia.locator(".race-state")).toHaveText("Past date");
   await expect(chattanooga.locator(".race-state")).toHaveText("Planned");
   await expect(

@@ -1,0 +1,39 @@
+---
+import Lines from "./Lines.astro";
+import { profile } from "../data/profile";
+import { texts, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+---
+
+<section id="story" class="panel" aria-labelledby="story-heading">
+  <div class="story-grid">
+    <div class="story-copy">
+      <p class="eyebrow">{t.storyEyebrow}</p>
+      <h2 id="story-heading"><Lines text={t.storyHeading} /></h2>
+      <p>{t.storyP1}</p>
+      <p>{t.storyP2}</p>
+      <p>{t.storyP3}</p>
+    </div>
+    <figure class="portrait">
+      <div class="portrait-frame">
+        <img
+          src="/assets/onepager/images/story-portrait.webp"
+          alt={t.portraitAlt}
+          width="1200"
+          height="1800"
+          loading="lazy"
+        />
+      </div>
+    </figure>
+  </div>
+  <div class="story-notes">
+    <div><span class="eyebrow">{t.sinceLabel}</span><strong>{profile.since}</strong></div>
+    <div><span class="eyebrow">{t.homeLabel}</span><strong>{profile.home}</strong></div>
+    <div><span class="eyebrow">{t.driveLabel}</span><strong>{t.driveValue}</strong></div>
+  </div>
+</section>

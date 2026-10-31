@@ -1,0 +1,24 @@
+---
+import "../styles/site.css";
+import type { Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  title: string;
+}
+const { lang, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <slot name="head" />
+    <link rel="icon" type="image/svg+xml" href="/assets/onepager/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

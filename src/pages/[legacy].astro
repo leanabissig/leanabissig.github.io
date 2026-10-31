@@ -1,0 +1,27 @@
+---
+// Addresses of the old multi-page site lead to the matching tab.
+export function getStaticPaths() {
+  return [
+    { params: { legacy: "about" }, props: { tab: "story" } },
+    { params: { legacy: "highlights" }, props: { tab: "highlights" } },
+    { params: { legacy: "partners" }, props: { tab: "support" } },
+    { params: { legacy: "calendar" }, props: { tab: "highlights" } },
+  ];
+}
+const target = `/?tab=${Astro.props.tab}#content`;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href="https://leanabissig.ch/" />
+    <title>Leana Bissig</title>
+  </head>
+  <body>
+    <p><a href={target}>Weiter zu Leana Bissig / Continue to Leana Bissig</a></p>
+  </body>
+</html>

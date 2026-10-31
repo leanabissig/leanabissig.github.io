@@ -1,0 +1,23 @@
+---
+import ArrowIcon from "../components/ArrowIcon.astro";
+import Base from "../layouts/Base.astro";
+---
+
+<Base lang="de" title="Seite nicht gefunden · Leana Bissig">
+  <meta slot="head" name="robots" content="noindex" />
+  <div class="site-shell">
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="Leana Bissig, Home">lb<span>.</span></a>
+    </header>
+    <main class="error-page">
+      <span class="eyebrow">Leana Bissig</span>
+      <h1>404.</h1>
+      <p>
+        Diese Seite gibt es nicht mehr. Meine Geschichte, Resultate und Partner findest du auf der neuen
+        Startseite.
+      </p>
+      <p lang="en">This page is no longer here. Find my story, results and partners on the new homepage.</p>
+      <a class="contact-button" href="/">Zur Startseite / Back home <span aria-hidden="true"><ArrowIcon /></span></a>
+    </main>
+  </div>
+</Base>

@@ -1,0 +1,73 @@
+---
+import ArrowIcon from "./ArrowIcon.astro";
+import Lines from "./Lines.astro";
+import { partnerGroups, team } from "../data/partners";
+import { local, texts, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+---
+
+<section id="support" class="panel" aria-labelledby="support-heading">
+  <p class="eyebrow">{t.supportEyebrow}</p>
+  <h2 id="support-heading"><Lines text={t.supportHeading} /></h2>
+  <p class="support-intro">{t.supportIntro}</p>
+  <a class="partner partner-main" href={team.url} target="_blank" rel="noopener noreferrer">
+    <span class="hotel-logo-stack">
+      <img
+        class="partner-logo hotel-logo hotel-logo-gray"
+        src={team.logoGray}
+        alt={team.logoAlt}
+        width="213"
+        height="277"
+        loading="lazy"
+      />
+      <img
+        class="partner-logo hotel-logo hotel-logo-color"
+        src={team.logoColor}
+        alt=""
+        aria-hidden="true"
+        width="213"
+        height="277"
+        loading="lazy"
+      />
+    </span>
+    <div class="partner-main-copy">
+      <span class="eyebrow">{t.teamLabel}</span>
+      <h3>{team.name}</h3>
+      <p>{t.teamText}</p>
+    </div>
+    <span class="partner-arrow" aria-hidden="true"><ArrowIcon /></span>
+  </a>
+  {
+    partnerGroups.map((group) => (
+      <div class="partner-group">
+        <h3 class="eyebrow group-heading">{local(group.heading, lang)}</h3>
+        <div class="logo-grid">
+          {group.partners.map((partner) => (
+            <a class="logo-card" href={partner.url} target="_blank" rel="noopener noreferrer">
+              <span class="logo-stage">
+                <img
+                  class:list={["partner-logo", partner.logo.className]}
+                  src={partner.logo.src}
+                  alt={partner.name}
+                  loading="lazy"
+                  width={partner.logo.width}
+                  height={partner.logo.height}
+                />
+              </span>
+              <span class="logo-caption">{local(partner.caption, lang)}</span>
+              <span class="logo-arrow" aria-hidden="true">
+                <ArrowIcon />
+              </span>
+            </a>
+          ))}
+        </div>
+        {group.others && <p class="other-partners">{group.others.join(" · ")}</p>}
+      </div>
+    ))
+  }
+</section>

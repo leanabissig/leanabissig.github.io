@@ -1,5 +1,8 @@
-const { defineConfig } = require("@playwright/test");
-module.exports = defineConfig({
+import { defineConfig } from "@playwright/test";
+
+// Tests run against the built site in dist/, served like GitHub Pages serves it.
+// `npm test` builds first.
+export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   workers: 2,
@@ -15,7 +18,7 @@ module.exports = defineConfig({
     },
   },
   webServer: {
-    command: "python3 -m http.server 8017 --bind 127.0.0.1",
+    command: "python3 -m http.server 8017 --bind 127.0.0.1 --directory dist",
     url: "http://127.0.0.1:8017",
     reuseExistingServer: false,
   },

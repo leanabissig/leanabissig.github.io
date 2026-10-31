@@ -1,0 +1,32 @@
+---
+import { pagePath, texts, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+---
+
+<header class="masthead">
+  <a class="wordmark" href={pagePath(lang)} aria-label="Leana Bissig, Home">lb<span>.</span></a><span
+    class="masthead-label">SWIM. BIKE. RUN.</span
+  >
+  <nav class="languages" aria-label={t.languages}>
+    <a
+      href="/"
+      data-language="de"
+      hreflang="de"
+      lang="de"
+      aria-label="Deutsch"
+      aria-current={lang === "de" ? "page" : undefined}>DE</a
+    ><span aria-hidden="true">/</span><a
+      href="/en/"
+      data-language="en"
+      hreflang="en"
+      lang="en"
+      aria-label="English"
+      aria-current={lang === "en" ? "page" : undefined}>EN</a
+    >
+  </nav>
+</header>

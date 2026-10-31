@@ -1,0 +1,26 @@
+---
+// Old links carry ?lang=en, and returning visitors may have picked English
+// before. Both lead to the matching page before anything renders. A stored
+// choice only applies to the home page, so a link to /en/ always stays English.
+---
+
+<script is:inline>
+  (() => {
+    const params = new URLSearchParams(location.search);
+    const asked = params.get("lang");
+    let lang = asked === "de" || asked === "en" ? asked : null;
+    if (!lang && location.pathname === "/") {
+      try {
+        lang = localStorage.getItem("leana-language");
+      } catch {
+        /* Storage may be unavailable. */
+      }
+    }
+    const path = lang === "en" ? "/en/" : lang === "de" ? "/" : location.pathname;
+    params.delete("lang");
+    const query = params.toString();
+    const target = path + (query ? `?${query}` : "") + location.hash;
+    if (path !== location.pathname) location.replace(target);
+    else if (asked !== null) history.replaceState(null, "", target);
+  })();
+</script>

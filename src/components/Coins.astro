@@ -1,0 +1,42 @@
+---
+import { championships } from "../data/championships";
+import { local, texts, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+---
+
+<!-- Leana's own qualification coins; a tap spins one onto its other face. -->
+<div class="coins">
+  <div>
+    <p class="eyebrow">{t.coinsEyebrow}</p>
+    <p class="coins-hint" hidden>{t.coinsHint}</p>
+  </div>
+  <div class="coin-row">
+    {
+      championships.map((item) => (
+        <figure class="coin-item">
+          <button
+            type="button"
+            class:list={["coin", item.kind === "patch" ? "coin-patch" : `coin-${item.metal}`]}
+            aria-pressed="false"
+            aria-label={local(item.label, lang)}
+          >
+            <span class="coin-inner">
+              {[item.front, item.back].map((src, index) => (
+                <span class:list={["coin-face", { "coin-back": index === 1 }]}>
+                  <img src={src} alt="" width={item.width} height={item.height} loading="lazy" />
+                  {item.kind === "coin" && <span class="coin-sheen" />}
+                </span>
+              ))}
+            </span>
+          </button>
+          <figcaption>{local(item.caption[0], lang)}<br />{local(item.caption[1], lang)}</figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</div>

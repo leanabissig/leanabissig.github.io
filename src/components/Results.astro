@@ -1,0 +1,55 @@
+---
+import { results } from "../data/results";
+import { local, texts, type Lang } from "../i18n";
+import { englishOrdinal } from "../scripts/places";
+import { displayDate } from "../scripts/dates";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+---
+
+<div class="results" aria-label={t.selectedResults}>
+  {
+    results.map((result) => (
+      <div class="result">
+        <span class="place" data-rank={result.rank}>
+          {/* No gaps inside: "3." or "3rd", then one space before the label. */}
+          <span class="place-number">{result.rank}<span class="place-ordinal">{lang === "en" ? englishOrdinal(result.rank) : "."}</span></span> <span class="place-label">{t.placeLabel}</span>
+        </span>
+        <div>
+          <h3>{local(result.race, lang)}</h3>
+          <p>
+            {result.tag && (
+              <>
+                <span class="result-tag">{local(result.tag, lang)}</span>{" "}
+              </>
+            )}
+            {result.details.map((detail) => local(detail, lang)).join(" · ")}
+          </p>
+        </div>
+        <span class="result-badge" title={result.logo.label}>
+          <img
+            class={`race-logo race-logo-${result.logo.kind}`}
+            src={result.logo.src}
+            alt={result.logo.label}
+            width="112"
+            height="48"
+            loading="lazy"
+          />
+        </span>
+        {result.dates.length > 1 ? (
+          <span class="result-dates">
+            {result.dates.map((date) => (
+              <time datetime={date}>{displayDate(date)}</time>
+            ))}
+          </span>
+        ) : (
+          <time datetime={result.dates[0]}>{displayDate(result.dates[0]!)}</time>
+        )}
+      </div>
+    ))
+  }
+</div>

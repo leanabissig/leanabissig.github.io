@@ -1,0 +1,53 @@
+# Builds the site and runs the browser tests on every push; pushes to master
+# then publish dist/ to GitHub Pages. Nothing goes live unless every test passes.
+# Requires Settings → Pages → Source: "GitHub Actions" (the domain stays set there).
+name: Build, test and deploy
+
+on:
+  push:
+  # Daily rebuild, so the season checks and llms.txt follow the calendar
+  # without a commit. GitHub pauses this after 60 days without repository activity.
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  ASTRO_TELEMETRY_DISABLED: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run check
+      - run: npm run build
+      - run: npx playwright test
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

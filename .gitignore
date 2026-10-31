@@ -1,9 +1,7 @@
-_site
-.sass-cache
-.jekyll-metadata
-Gemfile.lock
-.*_original
 .DS_Store
+.*_original
 node_modules/
+dist/
+.astro/
 test-results/
 playwright-report/

@@ -1,0 +1,89 @@
+---
+import Base from "../layouts/Base.astro";
+import Contact from "./Contact.astro";
+import Hero from "./Hero.astro";
+import Highlights from "./Highlights.astro";
+import LanguageRedirect from "./LanguageRedirect.astro";
+import Masthead from "./Masthead.astro";
+import Seo from "./Seo.astro";
+import Story from "./Story.astro";
+import Support from "./Support.astro";
+import { profile } from "../data/profile";
+import { texts, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+const tabs = [
+  { id: "story", label: t.tabStory },
+  { id: "highlights", label: t.tabHighlights },
+  { id: "support", label: t.tabSupport },
+];
+---
+
+<Base lang={lang} title={t.title}>
+  <Fragment slot="head">
+    <LanguageRedirect />
+    <Seo lang={lang} />
+  </Fragment>
+  <a class="skip-link" href="#content">{t.skip}</a>
+  <svg
+    class="visual-definitions"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+    width="0"
+    height="0"
+  >
+    <defs>
+      <filter id="logo-monochrome" color-interpolation-filters="sRGB">
+        <feColorMatrix type="saturate" values="0"></feColorMatrix>
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues=".40 .40 .40 .40 .40 1"></feFuncR>
+          <feFuncG type="table" tableValues=".40 .40 .40 .40 .40 1"></feFuncG>
+          <feFuncB type="table" tableValues=".40 .40 .40 .40 .40 1"></feFuncB>
+        </feComponentTransfer>
+      </filter>
+      <filter id="logo-monochrome-pure" color-interpolation-filters="sRGB">
+        <feColorMatrix type="saturate" values="0"></feColorMatrix>
+        <feComponentTransfer>
+          <feFuncR type="linear" slope=".78" intercept=".22"></feFuncR>
+          <feFuncG type="linear" slope=".78" intercept=".22"></feFuncG>
+          <feFuncB type="linear" slope=".78" intercept=".22"></feFuncB>
+        </feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+  <div class="site-shell">
+    <Masthead lang={lang} />
+    <main>
+      <Hero lang={lang} />
+      <div id="content" class="content" tabindex="-1">
+        <nav class="tabs" aria-label={t.topics}>
+          {
+            tabs.map((tab, index) => (
+              <a id={`tab-${tab.id}`} class="tab" href={`#${tab.id}`} data-tab={tab.id}>
+                <span class="tab-number" aria-hidden="true">{`0${index + 1}`}</span> <span>{tab.label}</span>
+              </a>
+            ))
+          }
+        </nav>
+        <Story lang={lang} />
+        <Highlights lang={lang} />
+        <Support lang={lang} />
+      </div>
+      <Contact lang={lang} />
+    </main>
+    <footer>
+      <span>© <span id="year">{new Date().getFullYear()}</span> {profile.name}</span><a
+        href={`mailto:${profile.email}?subject=${encodeURIComponent(t.mailSubjectContact)}`}>{profile.email}</a
+      ><span class="footer-signoff">See you outside.</span>
+    </footer>
+  </div>
+</Base>
+
+<script>
+  import "../scripts/site";
+</script>

@@ -1,10 +1,15 @@
 {
   "name": "leana-bissig-website",
   "version": "1.0.0",
-  "description": "Static one-page athlete website; dependencies are for browser checks only.",
+  "description": "Leana Bissig's athlete website, built with Astro into static pages for GitHub Pages.",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "preview": "python3 -m http.server 8000",
-    "test": "playwright test"
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "astro check",
+    "preview": "astro build && python3 -m http.server 8000 --directory dist",
+    "test": "astro build && playwright test"
   },
   "repository": {
     "type": "git",
@@ -14,9 +19,13 @@
     "url": "https://github.com/leanabissig/leanabissig.github.io/issues"
   },
   "homepage": "https://github.com/leanabissig/leanabissig.github.io#readme",
-  "devDependencies": {
-    "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.63.0"
+  "dependencies": {
+    "astro": "7.3.8"
   },
-  "private": true
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "typescript": "6.0.3"
+  }
 }
