@@ -28,7 +28,7 @@ const upcoming = seasonRaces
   .sort((a, b) => a.date.localeCompare(b.date));
 const kona = t.goalEyebrow.match(/\d{4}/)?.[0];
 const logos = [
-  { name: team.name, src: team.logoGray, width: 213, height: 277 },
+  { name: team.name, src: team.logoColor, width: 213, height: 277 },
   ...partnerGroups.flatMap((group) =>
     group.partners.map((p) => ({ name: p.name, src: p.logo.src, width: p.logo.width, height: p.logo.height })),
   ),

@@ -204,16 +204,14 @@ img {
   justify-content: space-between;
   gap: 5mm;
 }
-/* Grey like on the website; multiply drops the white boxes some logos have. */
+/* In their own colours; multiply drops the white boxes some logos have. */
 .logo-row img {
   width: auto;
   max-width: 22mm;
   height: auto;
   max-height: 9mm;
   object-fit: contain;
-  filter: grayscale(1);
   mix-blend-mode: multiply;
-  opacity: 0.8;
 }
 
 /* Page 2: goals and partnership offer */
