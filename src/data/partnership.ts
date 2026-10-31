@@ -68,7 +68,7 @@ export const partnership = {
     },
   ] as { title: Localized; text: Localized }[],
   intro: {
-    de: "Jede Partnerschaft ist anders. Ob Sichtbarkeit, Ihre Mitarbeitenden oder Ihre Produkte: Wir gestalten gemeinsam eine Zusammenarbeit, die zu Ihrem Unternehmen passt.",
+    de: "Jede Partnerschaft ist anders. Ob Sichtbarkeit, deine Mitarbeitenden oder deine Produkte: Wir gestalten gemeinsam eine Zusammenarbeit, die zu deinem Unternehmen passt.",
     en: "Every partnership is different. Whether it’s visibility, your people or your products, we shape a collaboration together that fits your organisation.",
   } as Localized,
   offers: [
@@ -76,11 +76,11 @@ export const partnership = {
       title: { de: "Sichtbarkeit", en: "Visibility" },
       items: [
         {
-          de: "Ihr Logo auf Renn- und Trainingsbekleidung, je nach Verfügbarkeit und Teamvereinbarung.",
+          de: "Dein Logo auf Renn- und Trainingsbekleidung, je nach Verfügbarkeit und Teamvereinbarung.",
           en: "Your logo on race and training kit, subject to availability and team agreements.",
         },
         {
-          de: "Fotos, Rennberichte und Einblicke für Ihre Kanäle.",
+          de: "Fotos, Rennberichte und Einblicke für deine Kanäle.",
           en: "Photos, race stories and behind-the-scenes content for your channels.",
         },
         { de: "Präsenz auf leanabissig.ch und Instagram.", en: "Presence on leanabissig.ch and Instagram." },
@@ -107,11 +107,11 @@ export const partnership = {
       title: { de: "Produkte im Renneinsatz", en: "Products in race conditions" },
       items: [
         {
-          de: "Ausrüstung und Ernährung im Training und im Wettkampf einsetzen.",
+          de: "Deine Ausrüstung und Ernährung im Training und im Wettkampf einsetzen.",
           en: "Using your gear and nutrition in training and racing.",
         },
         {
-          de: "Ehrliches, detailliertes Feedback für Ihre Produktentwicklung.",
+          de: "Ehrliches, detailliertes Feedback für deine Produktentwicklung.",
           en: "Honest, detailed feedback for your product development.",
         },
       ],
@@ -127,7 +127,7 @@ export const partnership = {
     },
   ] as { title: Localized; items: Localized[] }[],
   closing: {
-    de: "Lassen Sie uns reden. Ich freue mich zu hören, was Ihrem Unternehmen wichtig ist.",
+    de: "Lass uns reden. Ich freue mich zu hören, was deinem Unternehmen wichtig ist.",
     en: "Let’s talk. I’d love to hear what matters to your organisation.",
   } as Localized,
 };
