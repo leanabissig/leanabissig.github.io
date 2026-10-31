@@ -33,12 +33,6 @@ export const partnerGroups: PartnerGroup[] = [
     heading: { de: "Meine persönlichen Partner", en: "My personal partners" },
     partners: [
       {
-        name: "Saucony",
-        url: "https://www.saucony.ch/",
-        caption: { de: "Laufen", en: "Running" },
-        logo: { src: logo("saucony.png"), width: 480, height: 89 },
-      },
-      {
         name: "Sensolar",
         url: "https://sensolar.ch/",
         caption: { de: "Sonnenschutz", en: "Sun protection" },

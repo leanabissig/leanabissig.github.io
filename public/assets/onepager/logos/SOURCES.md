@@ -7,7 +7,6 @@ Für die lokale Website-Vorschau, zusammengestellt am 07.09.2026. Markenzeichen 
 | Hotel Jakob | [Offizielle SVG-Datei](https://www.hoteljakob.at/website/static/img/logo.svg) |
 | Canyon | [Offizielle Teamseite](https://www.hoteljakob.at/de/pro-team), [PNG-Datei](https://www.hoteljakob.at/website/var/tmp/image-thumbnails/0/2406/thumb__proteamSponsor/canyon_proteamhoteljakob_partner@2x.png) |
 | Pure Encapsulations | [Offizielle Teamseite](https://www.hoteljakob.at/de/pro-team), [PNG-Datei](https://www.hoteljakob.at/website/var/tmp/image-thumbnails/0/2410/thumb__proteamSponsor/pure_proteamhoteljakob_partner@2x.png) |
-| Saucony | Bestehendes Repository: `assets/images/partners/saucony_original.png` |
 | Sensolar | Bestehendes Repository: `assets/images/partners/sensolar_original.png` |
 | Swiss Triathlon | Bestehendes Repository: `assets/images/partners/swisstriathlon_original.png` |
 | TG Hütten | Bestehendes Repository: `assets/images/partners/tghuetten_original.png` |
