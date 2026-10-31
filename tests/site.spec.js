@@ -260,7 +260,7 @@ test("both pages name each other for search engines and describe Leana in their 
     const webPage = graph.find((node) => node["@type"] === "ProfilePage");
     expect(person.name).toBe("Leana Bissig");
     expect(person.jobTitle).toBe(lang === "en" ? "Professional triathlete" : "Profi-Triathletin");
-    expect(person.sponsor.map((s) => s.name)).toEqual(["Saucony", "Sensolar"]);
+    expect(person.sponsor.map((s) => s.name)).toEqual(["Sensolar"]);
     expect(person.memberOf.map((m) => m.name)).toEqual([
       "Pro Team Hotel Jakob",
       "Swiss Triathlon",
