@@ -16,6 +16,7 @@ Anschliessend `http://localhost:8000` öffnen. Kein npm-Schritt für die Website
 - `assets/onepager/site.js`: englische Übersetzung, Tabs, Sprachwahl und manueller Bildwechsel.
 - `assets/onepager/site.css`: Farben, Schrift, Abstände und mobile Darstellung.
 - `assets/onepager/images/`: optimierte Kopien der neu bereitgestellten Inbox-Fotos; die Originaldateien bleiben unverändert in der Inbox.
+- `llms.txt`: Zusammenfassung für KI-Agenten und Sprachmodelle (siehe unten).
 - `CNAME`: bestehende Domain `leanabissig.ch`.
 
 Die Reiter sind lokalisiert: «Mein Weg», «Highlights & Ausblick», «Meine Partner» auf Deutsch; «My Story», «Highlights & Goals», «My Support» auf Englisch. Direktlinks funktionieren mit `?tab=story`, `?tab=highlights` oder `?tab=support`; `&lang=en` wählt Englisch. Ohne JavaScript sind alle drei Bereiche sichtbar. Keine automatisch wechselnden Bilder, Tracking-Skripte oder eingebetteten Social-Feeds. Die Schrift Manrope ist lokal eingebunden; Lizenz: `assets/onepager/fonts/OFL.txt`.
@@ -24,11 +25,15 @@ Die öffentliche Kontaktadresse `contact@leanabissig.ch` stammt aus der bisherig
 
 Alle Mail-Links tragen eine Betreffzeile: «Kontakt · leanabissig.ch» (Kontakt-Button oben, Footer) und «Partnerschaft & Medien · leanabissig.ch» (Kontaktbereich). Die englischen Betreffe setzt `site.js` über `data-i18n-subject`. So sind Anfragen über die Website ohne Tracking erkennbar: im Postfach nach «leanabissig.ch» im Betreff filtern. Absender können den Betreff ändern; die Zählung ist deshalb eine Untergrenze.
 
-Strukturierte Daten (schema.org `Person`, JSON-LD im `<head>`) verweisen auf Instagram, LinkedIn und PTO und nennen Team, Wohnort, ETH und den MSc in Health Sciences and Technology. Bei Team- oder Profiländerungen mitpflegen.
+Strukturierte Daten (schema.org `Person`, JSON-LD im `<head>`) verweisen auf Instagram, LinkedIn und PTO und nennen Team, Verband, Verein, die persönlichen Partner Saucony und Sensolar, Wohnort, ETH, den MSc in Health Sciences and Technology sowie unter `award` den Schweizer Elite-Titel 2023, die wichtigsten Resultate und die WM-Qualifikation 2027. Bei Team-, Partner- oder Profiländerungen und neuen Spitzenresultaten mitpflegen.
 
 Resultate, deren Rang allein zu wenig Kontext gibt, erhalten ein `.result-tag`: «Weltmeisterschaft» (Nizza, 23. Rang), «Langdistanz-Debüt» (Ironman Switzerland; im PTO-Profil kein früherer Langdistanzstart, von Leana zu bestätigen), «T100 World Tour» (Wollongong, 100 km) und «Erster internationaler Profisieg» (Apfelland; Leanas eigene Einordnung, Sieg im PTO-Profil). Höchstens drei bis vier Labels, damit sie auffallen. Die beiden Cascais-Podestplätze (3. Rang 2024 und 2026) teilen sich bewusst eine Zeile: gleiches Rennen, gleicher Rang. Die Wiederholung steht als grauer Text «zweimal auf dem Podest» und nicht als Label, damit die vier Labels ihre Wirkung behalten; die Jahreszahlen stehen untereinander in `.result-dates` (auf schmalen Bildschirmen nebeneinander). Für ein drittes Jahr genügt ein weiteres `<time>` in derselben Zeile. Die Resultatliste zeigt Rang, Rennen und Distanz, aber keine Zielzeiten (Entscheid vom 04.10.2026); Zeiten stehen im PTO-Profil. Zell am See trägt «Ironman Pro Series» bewusst als grauen Text statt als Label: der Begriff sagt Firmen wenig, und mehr Labels würden die übrigen schwächen. Quelle: [Pro Series Races & Results](https://www.ironman.com/proseries/races-and-results), geprüft 04.10.2026.
 
 Unter dem Kontaktbereich steht ein aufklappbares «Kurzporträt für Medien» in der dritten Person (DE/EN). «Text kopieren» erscheint nur mit JavaScript und Zwischenablage-Zugriff (HTTPS oder localhost); sonst bleibt der Text markierbar. Bei neuen Resultaten oder Zielen mitpflegen.
+
+## KI-Agenten (`llms.txt`)
+
+`llms.txt` fasst die Seite für Sprachmodelle und KI-Agenten als Markdown zusammen: Profil, ausgewählte Resultate, Weltmeisterschaften, Saison 2026/27, Ziel Kona, Partner, das Kurzporträt (EN und DE, wörtlich) und Kontakt. Sie ist auf Englisch, weil die englische Seite nur mit JavaScript erscheint; Agenten lesen sonst nur Deutsch. Der `<head>` verlinkt sie mit `rel="describedby"`, `robots.txt` nennt sie. Die Datei wird von Hand gepflegt. Der Test «llms.txt summary stays in line with the page» schlägt fehl, wenn ein Rennen der Saisonliste mit Datum und Rang (`data-result`) bzw. «planned», ein Datum der Resultatliste oder eines der beiden Kurzporträts nicht übereinstimmt. Profil, Weltmeisterschaften und Partner prüft der Test nicht; bei Änderungen dort und bei jeder Anpassung «Last updated» nachführen. Alle KI-Crawler sind über `User-agent: *` zugelassen; GitHub Pages sperrt keine Crawler, eine Einzelaufzählung wie bei Hostern mit Sperrliste ist deshalb nicht nötig.
 
 ## Bilder
 

@@ -226,6 +226,46 @@ test("qualification coins flip between front and back on tap and keyboard", asyn
   await expect(patch.locator(".coin-edge")).toHaveCount(0);
 });
 
+test("llms.txt summary stays in line with the page", async ({ page }) => {
+  await page.goto("/?lang=de");
+  await expect(page.locator('link[rel="describedby"]')).toHaveAttribute(
+    "href",
+    "https://leanabissig.ch/llms.txt",
+  );
+  const response = await page.request.get("/llms.txt");
+  expect(response.ok()).toBe(true);
+  const summary = await response.text();
+  // Every season race is listed with its date and, once raced, its place.
+  const ordinal = (n) =>
+    n % 100 >= 11 && n % 100 <= 13
+      ? `${n}th`
+      : `${n}${{ 1: "st", 2: "nd", 3: "rd" }[n % 10] ?? "th"}`;
+  const seasonLines = summary.split("## Season")[1].split("\n## ")[0].split("\n");
+  const races = await page
+    .locator(".season-race")
+    .evaluateAll((items) =>
+      items.map((item) => ({ date: item.dataset.date, result: item.dataset.result })),
+    );
+  expect(races.length).toBeGreaterThan(0);
+  for (const { date, result } of races) {
+    const line = seasonLines.find((l) => l.startsWith(`- ${date} · `));
+    expect(line, `llms.txt season line for ${date}`).toBeTruthy();
+    expect(line).toContain(result ? `· ${ordinal(Number(result))} place` : "· planned");
+  }
+  for (const date of await page
+    .locator(".results time")
+    .evaluateAll((times) => times.map((t) => t.dateTime)))
+    expect(summary, `llms.txt result on ${date}`).toContain(date);
+  // Both short bios are quoted word for word.
+  const bio = () =>
+    page
+      .locator("#press-bio-text")
+      .evaluate((el) => el.textContent.replace(/\s+/g, " ").trim());
+  expect(summary).toContain(await bio());
+  await page.getByRole("button", { name: "English", exact: true }).click();
+  expect(summary).toContain(await bio());
+});
+
 test("legacy section links redirect; blog and gallery are removed", async ({
   page,
   request,

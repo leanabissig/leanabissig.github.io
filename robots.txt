@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+
+# Summary for language models: https://leanabissig.ch/llms.txt
 Sitemap: https://leanabissig.ch/sitemap.xml
