@@ -28,9 +28,9 @@ export const de = {
   storyP1:
     "Angefangen hat alles im Wasser. Als Kind war ich Wettkampfschwimmerin. Doch ich wollte auch laufen und Neues ausprobieren. Ende August 2012 stand ich in meinem ersten Triathlontraining.",
   storyP2:
-    "Seitdem hat mich der Sport nicht mehr losgelassen. Von der Kurzdistanz führte mein Weg schrittweise zu längeren Rennen. Ich war in den U23-Jahren nicht ganz vorne dabei. Aber ich blieb dran, lernte dazu und wurde über die Jahre besser. Nach mehreren Schweizermeistertiteln in den Kategorien U20 und U23 gewann ich 2023 auch den Elite-Titel im Sprinttriathlon und bestritt Rennen bis auf Stufe der World Triathlon Championship Series (WTCS).",
+    "Seitdem hat mich der Sport nicht mehr losgelassen. Von der Kurzdistanz führte mein Weg schrittweise zu längeren Rennen. Ich war in den U23-Jahren international nicht ganz vorne dabei. Aber ich blieb dran, lernte dazu und wurde über die Jahre besser. Nach mehreren Schweizermeistertiteln in den Kategorien U20 und U23 gewann ich 2023 auch den Elite-Titel im Sprinttriathlon und bestritt Rennen bis auf Stufe der World Triathlon Championship Series (WTCS).",
   storyP3:
-    "Neben dem Profisport arbeite ich zu 50 Prozent als Business Analyst. Nach meinem Master in Health Sciences and Technology an der ETH Zürich schätze ich diese andere Perspektive bis heute. Wenn Zeit bleibt: kochen, Dokus schauen und Podcasts hören.",
+    "Neben dem Profisport arbeite ich zu 50 Prozent als Business Analyst. Parallel zur Profikarriere habe ich fünf Jahre Vollzeit an der ETH Zürich studiert: Bachelor und Master in Health Sciences and Technology. Diese andere Perspektive schätze ich bis heute. Wenn Zeit bleibt: kochen, Dokus schauen und Podcasts hören.",
   portraitAlt: "Leana lächelt im grünen Sportshirt in der Abendsonne",
   sinceLabel: "Im Triathlon seit",
   homeLabel: "Zuhause in",
@@ -40,6 +40,8 @@ export const de = {
   highlightsHeading: "Viel erlebt.\nNoch mehr vor.",
   allResults: "Alle Resultate bei PTO",
   selectedResults: "Ausgewählte Resultate",
+  rankingsLabel: "Rankings",
+  rankingSeason: "Saison",
   placeLabel: "Rang",
   coinsEyebrow: "Meine Weltmeisterschaften",
   coinsHint: "Zum Drehen antippen",
@@ -52,7 +54,7 @@ export const de = {
   goalEyebrow: "Der Blick nach vorne · 2027",
   goalHeading: "Das Ziel: Kona.",
   goalText:
-    "Ich möchte mich für die Ironman-Weltmeisterschaft in Kona qualifizieren. Die Geschichte dieses Rennens und die Herausforderung der Langdistanz motivieren mich, weiter an mir zu arbeiten.",
+    "Ich möchte mich für die Ironman-Weltmeisterschaft in Kona qualifizieren und träume davon, dort einmal in die Top 5 zu kommen. Die Geschichte dieses Rennens und die Herausforderung der Langdistanz motivieren mich, weiter an mir zu arbeiten.",
   supportEyebrow: "Mein Umfeld",
   supportHeading: "Ein eigener Weg.\nEin starkes Miteinander.",
   supportIntro:
@@ -64,7 +66,7 @@ export const de = {
   writeMe: "Schreib mir",
   pressBioLabel: "Kurzporträt für Medien",
   pressBio:
-    "Leana Bissig ist Schweizer Profi-Triathletin aus Winterthur. Sie hat an der ETH Zürich einen Master in Health Sciences and Technology abgeschlossen und arbeitet neben dem Sport zu 50 Prozent als Business Analyst. Ihr Weg führte sie von der Kurzdistanz bis in die World Triathlon Championship Series und über die T100 World Tour zur Langdistanz. 2026 wurde sie bei ihrem ersten Ironman Vierte am Ironman Switzerland und stand am Ironman 70.3 Cascais als Dritte auf dem Podest; dort qualifizierte sie sich für die Ironman-70.3-WM 2027 in Chattanooga (USA). Ihr nächstes grosses Ziel ist die Qualifikation für die Ironman-WM in Kona.",
+    "Leana Bissig ist Schweizer Profi-Triathletin aus Winterthur. Parallel zur Profikarriere studierte sie fünf Jahre Vollzeit an der ETH Zürich, Bachelor und Master in Health Sciences and Technology; heute arbeitet sie neben dem Sport zu 50 Prozent als Business Analyst. Ihr Weg führte sie von der Kurzdistanz bis in die World Triathlon Championship Series und über die T100 World Tour zur Langdistanz. 2026 wurde sie bei ihrem ersten Ironman Vierte am Ironman Switzerland und stand am Ironman 70.3 Cascais als Dritte auf dem Podest; dort qualifizierte sie sich für die Ironman-70.3-WM 2027 in Chattanooga (USA). Ihr nächstes grosses Ziel ist die Qualifikation für die Ironman-WM in Kona; sie träumt davon, dort einmal in die Top 5 zu kommen.",
   copyBio: "Text kopieren",
   copiedBio: "Kopiert",
   // Subjects mark emails sent from the website so enquiries can be counted.

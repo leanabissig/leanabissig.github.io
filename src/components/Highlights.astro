@@ -2,6 +2,7 @@
 import ArrowIcon from "./ArrowIcon.astro";
 import Coins from "./Coins.astro";
 import Lines from "./Lines.astro";
+import Rankings from "./Rankings.astro";
 import Results from "./Results.astro";
 import Season from "./Season.astro";
 import { profile } from "../data/profile";
@@ -25,6 +26,7 @@ const t = texts[lang];
     >
   </div>
   <Results lang={lang} />
+  <Rankings lang={lang} />
   <Coins lang={lang} />
   <Season lang={lang} />
   <aside class="goal">

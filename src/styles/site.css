@@ -467,6 +467,26 @@ h3 {
   justify-items: end;
   gap: 2px;
 }
+/* Year-end rankings side by side under the results. */
+.rankings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  margin-top: 28px;
+}
+.rankings dd {
+  margin: 6px 0 0;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.ranking-number {
+  margin-right: 4px;
+  color: var(--ink);
+  font-size: 31px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1;
+}
 /* Qualification coins: two photo faces with stacked metal discs between them.
    --coin-turn is a registered angle, so it animates and the glint can follow it. */
 @property --coin-turn {

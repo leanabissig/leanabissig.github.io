@@ -351,6 +351,9 @@ test("llms.txt and llms-full.txt carry the page's races, results and bios", asyn
     .locator(".results time")
     .evaluateAll((times) => times.map((t) => t.dateTime)))
     expect(summary, `llms.txt result on ${date}`).toContain(date);
+  const rankings = await page.locator(".ranking-number").allTextContents();
+  expect(rankings.length).toBeGreaterThan(0);
+  for (const rank of rankings) expect(summary, `llms.txt ranking ${rank}`).toContain(rank);
   // Both short bios word for word, and the full text of both pages.
   for (const path of ["/", "/en/"]) {
     await page.goto(path);

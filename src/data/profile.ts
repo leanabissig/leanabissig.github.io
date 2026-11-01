@@ -1,5 +1,7 @@
 import type { Localized } from "../i18n";
 
+const pto = "https://stats.protriathletes.org/athlete/leana-bissig";
+
 // Facts about Leana shared by the page head, the structured data and llms.txt.
 export const profile = {
   name: "Leana Bissig",
@@ -10,7 +12,12 @@ export const profile = {
   since: 2012,
   instagram: "https://www.instagram.com/leanabissig/",
   linkedin: "https://www.linkedin.com/in/leana-bissig/",
-  pto: "https://stats.protriathletes.org/athlete/leana-bissig",
+  pto,
+  // Year-end rankings, shown in the partnership deck.
+  rankings: [
+    { name: "PTO World Ranking", rank: 40, season: 2025, url: pto },
+    { name: "T100 World Tour", rank: 22, season: 2025 },
+  ] as { name: string; rank: number; season: number; url?: string }[],
   jobTitle: { de: "Profi-Triathletin", en: "Professional triathlete" } as Localized,
   summary: {
     de: "Schweizer Profi-Triathletin aus Winterthur auf der Mittel- und Langdistanz.",
@@ -49,14 +56,14 @@ export const profile = {
   ] as Localized[],
   // Opening summary of llms.txt (English).
   intro:
-    "Swiss professional triathlete from Winterthur, racing middle and long distance (Ironman 70.3 and Ironman). She qualified for the 2027 Ironman 70.3 World Championship in Chattanooga, USA; her next big goal is to qualify for the Ironman World Championship in Kona.",
+    "Swiss professional triathlete from Winterthur, racing middle and long distance (Ironman 70.3 and Ironman). She qualified for the 2027 Ironman 70.3 World Championship in Chattanooga, USA; her next big goal is to qualify for the Ironman World Championship in Kona, and she dreams of finishing in the top 5 there one day.",
   // Profile in short sentences for llms.txt (English).
   facts: [
     "Swiss professional triathlete, middle and long distance; at home in Winterthur, Switzerland.",
     "Competitive swimmer as a child; first triathlon training at the end of August 2012.",
     "Several Swiss U20 and U23 championship titles; Swiss elite champion in sprint triathlon in 2023.",
     "Raced in the World Triathlon Championship Series (WTCS) and on the T100 World Tour before moving to long distance.",
-    "Master's degree (MSc) in Health Sciences and Technology from ETH Zurich; works 50% as a business analyst alongside professional sport.",
+    "Studied full-time at ETH Zurich for five years alongside her pro career: bachelor's and master's degrees (BSc and MSc) in Health Sciences and Technology; works 50% as a business analyst alongside professional sport.",
     "What drives her: to bring out the best in herself.",
   ],
 };

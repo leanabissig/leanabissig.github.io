@@ -1,0 +1,23 @@
+---
+import { profile } from "../data/profile";
+import { texts, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = texts[lang];
+---
+
+<dl class="rankings" aria-label={t.rankingsLabel}>
+  {
+    profile.rankings.map((ranking) => (
+      <div>
+        <dt class="eyebrow">{ranking.name}</dt>
+        <dd>
+          <span class="ranking-number">#{ranking.rank}</span> {t.rankingSeason} {ranking.season}
+        </dd>
+      </div>
+    ))
+  }
+</dl>

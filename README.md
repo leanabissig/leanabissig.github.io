@@ -58,7 +58,7 @@ Solange in `partnership.ts` `draft: true` steht, trägt jede Seite den Stempel �
 | --- | --- | --- |
 | Karussell 1 | `bike-portrait-*.webp` | `Fotoshooting_Leana Mai-8.JPG` |
 | Karussell 2 | `bike-action-*.webp` | `Fotoshooting_Leana Mai-19.JPG` |
-| Karussell 3 | `after-race-*.webp` | `77fa350a-20a3-4ba6-832f-f4a7f7e9d105.JPG` |
+| Karussell 3, Deck Seite 2 | `after-race-*.webp` | `after-race-nahaufnahme.jpg` (von Leana am 1.11.2026 gewählt) |
 | My Story | `story-portrait.webp` | `DSC04684.JPG` |
 | Coin Nizza 2026 | `coin-nice-2026-front.webp`, `coin-nice-2026-back.webp` | `coin-nice-2026-front.jpg`, `coin-nice-2026-back.jpg` |
 | Patch T100 Katar 2025 | `patch-t100-qatar-2025-front.webp`, `patch-t100-qatar-2025-back.webp` | `patch-t100-qatar-2025-front.jpg`, `patch-t100-qatar-2025-back.jpg` |
