@@ -1670,8 +1670,9 @@ footer a {
 .hero-photo:nth-child(2) {
   object-position: 50% 60%;
 }
+/* Already cropped to the desktop frame; narrower phone frames keep both faces. */
 .hero-photo:nth-child(3) {
-  object-position: 46% 52%;
+  object-position: 75% 52%;
 }
 /* Explicit grey fills preserve the face and head in the illustrated emblem. */
 .hotel-logo-stack {

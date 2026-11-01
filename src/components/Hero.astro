@@ -8,10 +8,11 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = texts[lang];
+// Heights at 1200px width; the after-race photo is cropped closer than 2:3.
 const photos = [
-  { name: "bike-portrait", alt: t.photoBikePortrait },
-  { name: "bike-action", alt: t.photoCycling },
-  { name: "after-race", alt: t.photoAfterRace },
+  { name: "bike-portrait", alt: t.photoBikePortrait, height: 1800 },
+  { name: "bike-action", alt: t.photoCycling, height: 1800 },
+  { name: "after-race", alt: t.photoAfterRace, height: 1306 },
 ];
 const image = (name: string, width: number) => `/assets/onepager/images/${name}-${width}.webp`;
 const contactMail = `mailto:${profile.email}?subject=${encodeURIComponent(t.mailSubjectContact)}`;
@@ -32,7 +33,7 @@ const contactMail = `mailto:${profile.email}?subject=${encodeURIComponent(t.mail
             srcset={`${image(photo.name, 640)} 640w, ${image(photo.name, 1200)} 1200w`}
             sizes="(max-width:700px) calc(100vw - 36px), 535px"
             width="1200"
-            height="1800"
+            height={photo.height}
             alt={photo.alt}
             fetchpriority={index === 0 ? "high" : undefined}
             loading={index === 0 ? undefined : "lazy"}

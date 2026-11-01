@@ -337,12 +337,9 @@ img {
   gap: 4mm;
   min-height: 0;
 }
+/* The photo keeps its cropped shape; the card follows right below it. */
 .contact img {
-  flex: 1;
   width: 100%;
-  min-height: 0;
-  object-fit: cover;
-  object-position: 50% 30%;
   border-radius: 1.5mm;
 }
 .contact-card {
