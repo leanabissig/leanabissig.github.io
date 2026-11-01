@@ -7,7 +7,7 @@ import type { Localized } from "../i18n";
 // While `draft` is true, every page carries a draft stamp, sections written as
 // proposals are marked, and the website does not link the deck.
 export const partnership = {
-  draft: true,
+  draft: false,
   title: { de: "Leana Bissig · Partnerschaft", en: "Leana Bissig · Partnership" } as Localized,
   file: (lang: "de" | "en") => `/deck/leana-bissig-partnership-${lang}.pdf`,
   labels: {
@@ -16,8 +16,8 @@ export const partnership = {
     profileTitle: { de: "Profil & Erfolge", en: "Profile & achievements" },
     goalsTitle: { de: "Ziele & Partnerschaft", en: "Goals & partnership" },
     subtitle: {
-      de: "Mittel- und Langdistanz · MSc ETH Health Sciences and Technology · Business Analyst 50 %",
-      en: "Middle and long distance · MSc ETH Health Sciences and Technology · Business analyst, 50%",
+      de: "Mittel- und Langdistanz · MSc ETH Health Sciences and Technology · Business Analyst",
+      en: "Middle and long distance · MSc ETH Health Sciences and Technology · Business analyst",
     },
     titles: { de: "Titel", en: "Titles" },
     partners: { de: "Partner & Team", en: "Partners & team" },
@@ -48,8 +48,15 @@ export const partnership = {
     {
       title: { de: "Dranbleiben", en: "Perseverance" },
       text: {
-        de: "In den U23-Jahren war ich nicht ganz vorne. Ich blieb dran, lernte dazu und wurde Jahr für Jahr besser.",
-        en: "I wasn’t at the front in my U23 years. I kept going, kept learning and got better every year.",
+        de: "In den U23-Jahren war ich international nicht ganz vorne dabei. Ich blieb dran, lernte dazu und wurde Jahr für Jahr besser.",
+        en: "I wasn’t right at the front internationally in my U23 years. I kept going, kept learning and got better every year.",
+      },
+    },
+    {
+      title: { de: "Resilienz", en: "Resilience" },
+      text: {
+        de: "Fünf Jahre Vollzeitstudium an der ETH Zürich, Bachelor und Master, neben der Profikarriere: Ich halte durch, auch wenn es streng wird.",
+        en: "Five years of full-time study at ETH Zurich, bachelor’s and master’s, alongside my pro career: I keep going when things get tough.",
       },
     },
     {
@@ -62,8 +69,8 @@ export const partnership = {
     {
       title: { de: "Das Beste herausholen", en: "Bringing out my best" },
       text: {
-        de: "Im Training, im Rennen und in meinem Beruf als Business Analyst gebe ich, was in mir steckt.",
-        en: "In training, in racing and in my work as a business analyst, I give everything I have.",
+        de: "Ich setze mir gerne ehrgeizige Ziele. Im Training, im Rennen und in meinem Beruf als Business Analyst gebe ich alles, um sie zu erreichen.",
+        en: "I like to set myself ambitious goals. In training, in racing and in my work as a business analyst, I give everything I have to achieve them.",
       },
     },
   ] as { title: Localized; text: Localized }[],
@@ -76,12 +83,12 @@ export const partnership = {
       title: { de: "Sichtbarkeit", en: "Visibility" },
       items: [
         {
-          de: "Dein Logo auf Renn- und Trainingsbekleidung, je nach Verfügbarkeit und Teamvereinbarung.",
-          en: "Your logo on race and training kit, subject to availability and team agreements.",
+          de: "Dein Logo auf Renn- und Trainingsbekleidung, je nach Verfügbarkeit und Umfang der Partnerschaft.",
+          en: "Your logo on race and training kit, depending on availability and the scope of the partnership.",
         },
         {
-          de: "Fotos, Rennberichte und Einblicke für deine Kanäle.",
-          en: "Photos, race stories and behind-the-scenes content for your channels.",
+          de: "Fotos, Videos, Rennberichte und Einblicke für deine Kanäle.",
+          en: "Photos, videos, race stories and behind-the-scenes content for your channels.",
         },
         { de: "Präsenz auf leanabissig.ch und Instagram.", en: "Presence on leanabissig.ch and Instagram." },
       ],
@@ -123,11 +130,16 @@ export const partnership = {
           de: "Für eine Saison oder bis Kona: Umfang und Form legen wir gemeinsam fest.",
           en: "For one season or all the way to Kona: we agree on scope and format together.",
         },
+        {
+          de: "Persönliche Saison- und Rennberichte nur für dich und dein Team.",
+          en: "Personal season and race reports just for you and your team.",
+        },
+        { de: "Exklusivität in deiner Branche.", en: "Exclusivity in your industry." },
       ],
     },
   ] as { title: Localized; items: Localized[] }[],
   closing: {
-    de: "Lass uns reden. Ich freue mich zu hören, was deinem Unternehmen wichtig ist.",
-    en: "Let’s talk. I’d love to hear what matters to your organisation.",
+    de: "Kona ist das Ziel. Begleite mich auf dem Weg dorthin.",
+    en: "Kona is the goal. Join me on the way there.",
   } as Localized,
 };

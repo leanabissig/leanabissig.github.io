@@ -27,11 +27,15 @@ const upcoming = seasonRaces
   .filter((race) => raceStatus(race.date, race.timeZone, now) !== "past")
   .sort((a, b) => a.date.localeCompare(b.date));
 const kona = t.goalEyebrow.match(/\d{4}/)?.[0];
+// The team and its partners first, then personal partners, then memberships.
+const logoOrder = ["team", "sponsor", "membership"];
 const logos = [
-  { name: team.name, src: team.logoColor, width: 213, height: 277 },
-  ...partnerGroups.flatMap((group) =>
-    group.partners.map((p) => ({ name: p.name, src: p.logo.src, width: p.logo.width, height: p.logo.height })),
-  ),
+  { name: team.name, src: team.logoColor, width: 213, height: 277, team: true },
+  ...partnerGroups
+    .toSorted((a, b) => logoOrder.indexOf(a.role) - logoOrder.indexOf(b.role))
+    .flatMap((group) =>
+      group.partners.map((p) => ({ name: p.name, src: p.logo.src, width: p.logo.width, height: p.logo.height })),
+    ),
 ];
 const site = new URL(profile.site).host;
 // JPEG copies from ./img/[name].jpg.ts keep the PDFs small.
@@ -93,6 +97,23 @@ const instagramHandle = new URL(profile.instagram).pathname.replaceAll("/", "");
                 ))
               }
             </table>
+            <dl class="rankings">
+              {
+                profile.rankings.map((ranking) => {
+                  const value = (
+                    <>
+                      <strong>#{ranking.rank}</strong> {t.rankingSeason} {ranking.season}
+                    </>
+                  );
+                  return (
+                    <div>
+                      <dt class="eyebrow">{ranking.name}</dt>
+                      <dd>{ranking.url ? <a href={ranking.url}>{value}</a> : value}</dd>
+                    </div>
+                  );
+                })
+              }
+            </dl>
             <h2 class="eyebrow titles-heading">{l(label.titles)}</h2>
             <ul class="titles">
               {profile.titles.map((title) => <li>{l(title)}</li>)}
@@ -102,7 +123,7 @@ const instagramHandle = new URL(profile.instagram).pathname.replaceAll("/", "");
         <section class="logos">
           <h2 class="eyebrow">{l(label.partners)}</h2>
           <div class="logo-row">
-            {logos.map((logo) => <img src={logo.src} alt={logo.name} width={logo.width} height={logo.height} />)}
+            {logos.map((logo) => <img class:list={{ "team-logo": "team" in logo }} src={logo.src} alt={logo.name} width={logo.width} height={logo.height} />)}
           </div>
         </section>
       </div>
