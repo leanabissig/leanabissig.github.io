@@ -199,7 +199,8 @@ img {
 }
 .coin-row {
   display: flex;
-  gap: 6mm;
+  justify-content: space-between;
+  gap: 3mm;
 }
 .coin-row figure {
   display: grid;
@@ -254,7 +255,7 @@ img {
 }
 .columns.three {
   flex: 1;
-  grid-template-columns: 72mm 1fr 74mm;
+  grid-template-columns: 66mm 1fr 74mm;
   gap: 9mm;
   min-height: 0;
 }
@@ -308,21 +309,23 @@ img {
   margin-bottom: 3mm;
   font-size: 9.6pt;
 }
+/* Body text on page 2 matches page 1 (9.2pt). */
 .offer h3 {
   margin-top: 3mm;
-  font-size: 9pt;
+  font-size: 9.6pt;
 }
 .offer li {
   position: relative;
   margin-top: 1mm;
   padding-left: 3.5mm;
   color: var(--muted);
+  font-size: 9.2pt;
 }
 .offer li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 1.75mm;
+  top: 1.9mm;
   width: 1.5mm;
   height: 1.5mm;
   border-radius: 50%;
@@ -354,6 +357,7 @@ img {
   line-height: 1.35;
 }
 .contact-card li {
+  font-size: 9.2pt;
   font-weight: 600;
 }
 
